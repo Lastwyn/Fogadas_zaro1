@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Feb 20. 17:13
+-- Létrehozás ideje: 2023. Feb 22. 20:10
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.10
 
@@ -90,6 +90,56 @@ CREATE TABLE `jatekosok` (
   `jatekos_nev` varchar(255) NOT NULL,
   `pozicio` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `jatekosok`
+--
+
+INSERT INTO `jatekosok` (`nemzet_id`, `jatekos_nev`, `pozicio`) VALUES
+(1, 'Manuel Neuer', 'Kapus'),
+(1, 'Joshua Kimmich', 'Védő'),
+(1, 'Matthias Ginter', 'Védő'),
+(1, 'Antonio Rudiger', 'Védő'),
+(1, 'Robin Gosens', 'Védő'),
+(1, 'Toni Kroos', 'Középpályás'),
+(1, 'Ilkay Gundogan', 'Középpályás'),
+(1, 'Kai Havertz', 'Középpályás'),
+(1, 'Serge Gnabry', 'Támadó'),
+(1, 'Thomas Muller', 'Támadó'),
+(1, 'Timo Werner', 'Támadó'),
+(2, 'Hugo Lloris', 'Kapus'),
+(2, 'Benjamin Pavard', 'Védő'),
+(2, 'Raphael Varane', 'Védő'),
+(2, 'Presnel Kimpembe', 'Védő'),
+(2, 'Lucas Hernandez', 'Védő'),
+(2, 'N\'Golo Kante', 'Középpályás'),
+(2, 'Paul Pogba', 'Középpályás'),
+(2, 'Adrien Rabiot', 'Középpályás'),
+(2, 'Kylian Mbappe', 'Támadó'),
+(2, 'Antoine Griezmann', 'Támadó'),
+(2, 'Karim Benzema', 'Támadó'),
+(3, 'Péter Gulácsi', 'Kapus'),
+(3, 'Ádám Lang', 'Védő'),
+(3, 'Attila Fiola', 'Védő'),
+(3, 'Willi Orbán', 'Védő'),
+(3, 'Endre Botka', 'Védő'),
+(3, 'Dávid Sigér', 'Középpályás'),
+(3, 'László Kleinheisler', 'Középpályás'),
+(3, 'Ákos Kecskés', 'Középpályás'),
+(3, 'Dominik Szoboszlai', 'Csatár'),
+(3, 'Ádám Szalai', 'Csatár'),
+(3, 'Roland Sallai', 'Csatár'),
+(4, 'Gianluigi Donnarumma', 'Kapus'),
+(4, 'Giovanni Di Lorenzo', 'Védő'),
+(4, 'Leonardo Bonucci', 'Védő'),
+(4, 'Giorgio Chiellini', 'Védő'),
+(4, 'Emerson Palmieri', 'Védő'),
+(4, 'Jorginho', 'Középpályás'),
+(4, 'Marco Verratti', 'Középpályás'),
+(4, 'Nicolo Barella', 'Középpályás'),
+(4, 'Federico Chiesa', 'Támadó'),
+(4, 'Lorenzo Insigne', 'Támadó'),
+(4, 'Ciro Immobile', 'Támadó');
 
 -- --------------------------------------------------------
 
