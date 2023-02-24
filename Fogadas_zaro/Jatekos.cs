@@ -22,5 +22,7 @@ namespace Fogadas_zaro
         public int Nemzet_id { get => nemzet_id; set => nemzet_id = value; }
         public string Jatekos_nev { get => jatekos_nev; set => jatekos_nev = value; }
         public string Pozicio { get => pozicio; set => pozicio = value; }
+
+
     }
 }

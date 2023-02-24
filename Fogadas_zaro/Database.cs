@@ -120,7 +120,7 @@ namespace Fogadas_zaro
             return  adatvissza;
         }
 
-        public string[] gol_lovo(Random rng,int csapatid)
+        public List<Jatekos> gol_lovo(Random rng,int csapatid,int golok_szama)
         {
             command.Parameters.Clear();        
             command.CommandText = "SELECT * FROM jatekosok WHERE nemzet_id = @id";
@@ -140,47 +140,45 @@ namespace Fogadas_zaro
             } 
             
             //próba sorsolás gól 
-            string[] temp = new string[2];
-            Jatekos goljelolt = null;
-            while (goljelolt == null)
+            List<Jatekos> golovok = new List<Jatekos>();
+            for (int i = 0; i < golok_szama; i++)
             {
-                int valasztottJatekosIndex = rng.Next(jatekosok.Count);
-                Jatekos valasztottJatekos = jatekosok[valasztottJatekosIndex];
-               
-                switch (valasztottJatekos.Pozicio)
+                Jatekos goljelolt = null;
+                while (goljelolt == null)
                 {
-                    case "Kapus":
-                        break;
-                    case "Védő":
-                        if (rng.Next(5) == 0)
-                        {
-                            goljelolt = valasztottJatekos;
-                            temp[0] = goljelolt.Jatekos_nev;
-                            temp[1] = "Védő";
-                        }
-                        break;
-                    case "Középpályás":
-                        if (rng.Next(4) == 0)
-                        {
-                            goljelolt = valasztottJatekos;
-                            temp[0] = goljelolt.Jatekos_nev;
-                            temp[1] = "Középpályás";
-                        }
-                        break;
-                    case "Csatár":
-                        if (rng.Next(4) == 0)
-                        {
-                            goljelolt = valasztottJatekos;
-                            temp[0] = goljelolt.Jatekos_nev;
-                            temp[1] = "Csatár";
-                        }
-                        break;
-                 
+                    int valasztottJatekosIndex = rng.Next(jatekosok.Count);
+                    Jatekos valasztottJatekos = jatekosok[valasztottJatekosIndex];
 
+                    switch (valasztottJatekos.Pozicio)
+                    {
+                        case "Kapus":
+                            break;
+                        case "Védő":
+                            if (rng.Next(5) == 0)
+                            {
+                                goljelolt = valasztottJatekos;
+                                golovok.Add(goljelolt);
+                            }
+                            break;
+                        case "Középpályás":
+                            if (rng.Next(4) == 0)
+                            {
+                                goljelolt = valasztottJatekos;
+                                golovok.Add(goljelolt);
+                            }
+                            break;
+                        case "Csatár":
+                            if (rng.Next(4) == 0)
+                            {
+                                goljelolt = valasztottJatekos;
+                                golovok.Add(goljelolt);
+                            }
+                            break;
+                    }
                 }
             }
             connection.Close(); 
-            return temp;
+            return golovok;
             
         }
     }

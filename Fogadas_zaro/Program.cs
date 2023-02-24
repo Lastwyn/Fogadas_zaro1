@@ -12,9 +12,9 @@ namespace Fogadas_zaro
     class Program
     { 
        
-        static int sorsolas(double hazairange, double vendegrange,Random rng)
+        static int[] sorsolas(double hazairange, double vendegrange,Random rng)
         {
-
+            int[] az = new int[3];
             double random = Convert.ToDouble(rng.Next(-1000, 1001)) / 1000;
             int fix = rng.Next(1, 5);
             if (random > hazairange)
@@ -26,7 +26,10 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{golszam} gól volt a meccsen");
                 Console.WriteLine($"{hazaipont}-{vendegpont}");
                 Console.WriteLine("Hazai nyert");
-                return 0;
+                az[1] = Convert.ToInt32(hazaipont);
+                az[2] = Convert.ToInt32(vendegpont);
+                az[0] = 0;
+                return az;
             }
             else if (random < vendegrange)
             {
@@ -37,7 +40,10 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{golszam} gól volt a meccsen");
                 Console.WriteLine($"{hazaipont}-{vendegpont}");
                 Console.WriteLine("Vendég nyert");
-                return 1;
+                az[1] = Convert.ToInt32(hazaipont);
+                az[2] = Convert.ToInt32(vendegpont);
+                az[0] = 1;
+                return az;
             }
             else
             {
@@ -45,7 +51,10 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{golszam} gól volt a meccsen");
                 Console.WriteLine($"{fix}-{fix}");
                 Console.WriteLine("Döntetlen");
-                return 2;
+                az[1] = Convert.ToInt32(fix);
+                az[2] = Convert.ToInt32(fix);
+                az[0] = 2;
+                return az;
             }
             
         }
@@ -79,14 +88,20 @@ namespace Fogadas_zaro
             double hazairange = 0.3 + hazaisuly;
             double vendegrange = -0.3 + vendegsuly;
             Console.WriteLine($"{csapatok[0]} {csapatok[1]}");
-            Console.WriteLine($"{csapatnev[0]} {csapatnev[1]}");
-            
-            int eredmeny = sorsolas(hazairange,vendegrange,rng);
-            if (eredmeny != 2)
+            Console.WriteLine($"{csapatnev[0]} {csapatnev[1]}");           
+            int[] eredmeny = sorsolas(hazairange,vendegrange,rng);
+
+            List<Jatekos> hazaigollovok = database.gol_lovo(rng, csapatok[0], eredmeny[1]);
+            List<Jatekos> vendeggollovok = database.gol_lovo(rng, csapatok[1], eredmeny[2]);
+            foreach (Jatekos jatekos in hazaigollovok)
             {
-            string[] temp2 = database.gol_lovo(rng,csapatok[eredmeny]);
-            Console.WriteLine($"{temp2[0]}---{temp2[1]}");
+                Console.WriteLine($"{jatekos.Jatekos_nev}---{jatekos.Pozicio}");
             }
+            foreach (Jatekos jatekos in vendeggollovok)
+            {
+                Console.WriteLine($"{jatekos.Jatekos_nev}---{jatekos.Pozicio}");
+            }
+
             Console.ReadKey();
 
         }
