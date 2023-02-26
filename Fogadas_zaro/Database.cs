@@ -154,21 +154,21 @@ namespace Fogadas_zaro
                         case "Kapus":
                             break;
                         case "Védő":
-                            if (rng.Next(5) == 0)
+                            if (rng.Next(0,10) == 0)//10% esély védőre
                             {
                                 goljelolt = valasztottJatekos;
                                 golovok.Add(goljelolt);
                             }
                             break;
                         case "Középpályás":
-                            if (rng.Next(4) == 0)
+                            if (rng.Next(0,5) == 0)//20% esély középpályásra
                             {
                                 goljelolt = valasztottJatekos;
                                 golovok.Add(goljelolt);
                             }
                             break;
                         case "Csatár":
-                            if (rng.Next(4) == 0)
+                            if (rng.Next(0,2) == 0)//50% esély csatárra
                             {
                                 goljelolt = valasztottJatekos;
                                 golovok.Add(goljelolt);
@@ -178,8 +178,28 @@ namespace Fogadas_zaro
                 }
             }
             connection.Close(); 
-            return golovok;
-            
+            return golovok;         
+        }
+        
+
+        public void adatkiiratas(string eredmeny, List<Jatekos> gollovo, int golszam, int hazaiid, int vendegid)
+        {
+            string jatekos = "";
+            foreach ( Jatekos j in gollovo)
+            {
+               jatekos += j.Jatekos_nev + ",";
+            }
+            command.Parameters.Clear();
+            command.CommandText = "INSERT INTO meccs_eredmeny (eredmeny,gol_szerzo,golszam,hazai_id,vendeg_id) VALUES(@eredmeny, @golszerzo, @golszam, @hazai, @vendeg); ";
+            command.Parameters.AddWithValue("@eredmeny", eredmeny);
+            command.Parameters.AddWithValue("@golszerzo", jatekos);
+            command.Parameters.AddWithValue("@golszam", golszam);
+            command.Parameters.AddWithValue("@hazai", hazaiid);
+            command.Parameters.AddWithValue("@vendeg", vendegid);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+
         }
     }
 }

@@ -10,8 +10,9 @@ using MySql.Data.MySqlClient;
 namespace Fogadas_zaro
 {
     class Program
-    { 
+    {
        
+
         static int[] sorsolas(double hazairange, double vendegrange,Random rng)
         {
             int[] az = new int[3];
@@ -58,6 +59,7 @@ namespace Fogadas_zaro
             }
             
         }
+        
         static void Main(string[] args)
         {
             Random rng = new Random(Guid.NewGuid().GetHashCode());
@@ -102,9 +104,37 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{jatekos.Jatekos_nev}---{jatekos.Pozicio}");
             }
 
+            database.adatkiiratas($"{eredmeny[1]}-{eredmeny[2]}", hazaigollovok.Concat(vendeggollovok).ToList(), eredmeny[1] + eredmeny[2], csapatok[0], csapatok[1]);
+
+      
             Console.ReadKey();
 
         }
-      
+        /*    List<double> szorzok = new List<double>();
+          // Meccs adatainak kinyerése
+
+
+          // Esélyek kiszámolása
+
+          double hazaiEsely = 1.0 / Convert.ToDouble(hazainyer);
+          hazaiEsely = (hazaiEsely == 0) ? 0.5 : hazaiEsely;
+          double vendegEsely = 1.0 / Convert.ToDouble(vendegnyer);
+          vendegEsely = (vendegEsely == 0) ? 0.5 : vendegEsely;
+          double dontetlenEsely = 1.0 / (hazainyer + vendegnyer - 1);
+
+          // Szorzók meghatározása
+          double hazaiSzorzo = 1.0 / hazaiEsely;
+          double vendegSzorzo = 1.0 / vendegEsely;
+          double dontetlenSzorzo = 1.0 / dontetlenEsely;
+
+          // Szorzók hozzáadása a listához
+          szorzok.Add(hazaiSzorzo);
+          szorzok.Add(csapatok[0]);
+          szorzok.Add(vendegSzorzo);
+          szorzok.Add(csapatok[1]);
+          szorzok.Add(dontetlenSzorzo);
+
+          Console.WriteLine($"{szorzok[1]},{szorzok[0]},{szorzok[3]},{szorzok[2]},{szorzok[4]}");*/
+
     }
 }
