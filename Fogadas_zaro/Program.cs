@@ -59,18 +59,25 @@ namespace Fogadas_zaro
             }
             
         }
-        
+        static List<string> Szorzok(double hazaisuly, double vendegsuly)
+        {
+            List<string> szorzok = new List<string>();
+
+
+            return szorzok;
+        }
         static void Main(string[] args)
         {
             Random rng = new Random(Guid.NewGuid().GetHashCode());
             Database database = new Database();
-            int[] csapatok = database.csapatsorsolas(rng);
+            int[] csapatok = database.csapatsorsolas(rng);        
             string[] csapatnev = database.csapatnev(csapatok);
             int hazainyer = database.getcsapatnyer(csapatok[0]);
             int vendegnyer = database.getcsapatnyer(csapatok[1]);
+           
             double suly = Convert.ToDouble(vendegnyer - hazainyer) / 10;
             double hazaisuly = 0;
-            if (Math.Abs(hazaisuly) == hazaisuly)
+            if (Math.Abs(suly) == suly)
             {
                 hazaisuly = suly * 1.5;
             }
@@ -79,16 +86,22 @@ namespace Fogadas_zaro
                 hazaisuly = suly;
             }
             double vendegsuly = 0;
-            if (Math.Abs(vendegsuly) != vendegsuly)
+            if (Math.Abs(suly) != suly)
             {
                 vendegsuly = suly * 1.5;
             }
             else
             {
                 vendegsuly = suly;
-            }
-            double hazairange = 0.3 + hazaisuly;
-            double vendegrange = -0.3 + vendegsuly;
+            } 
+            
+            double hazairange = 0.2 + hazaisuly;
+            double vendegrange = -0.2 + vendegsuly;
+            Console.WriteLine(hazairange);
+            Console.WriteLine(vendegrange);
+            Console.WriteLine(hazainyer);
+            Console.WriteLine(vendegnyer);
+            Szorzok(hazaisuly,vendegsuly);
             Console.WriteLine($"{csapatok[0]} {csapatok[1]}");
             Console.WriteLine($"{csapatnev[0]} {csapatnev[1]}");           
             int[] eredmeny = sorsolas(hazairange,vendegrange,rng);
@@ -110,31 +123,7 @@ namespace Fogadas_zaro
             Console.ReadKey();
 
         }
-        /*    List<double> szorzok = new List<double>();
-          // Meccs adatainak kinyerése
-
-
-          // Esélyek kiszámolása
-
-          double hazaiEsely = 1.0 / Convert.ToDouble(hazainyer);
-          hazaiEsely = (hazaiEsely == 0) ? 0.5 : hazaiEsely;
-          double vendegEsely = 1.0 / Convert.ToDouble(vendegnyer);
-          vendegEsely = (vendegEsely == 0) ? 0.5 : vendegEsely;
-          double dontetlenEsely = 1.0 / (hazainyer + vendegnyer - 1);
-
-          // Szorzók meghatározása
-          double hazaiSzorzo = 1.0 / hazaiEsely;
-          double vendegSzorzo = 1.0 / vendegEsely;
-          double dontetlenSzorzo = 1.0 / dontetlenEsely;
-
-          // Szorzók hozzáadása a listához
-          szorzok.Add(hazaiSzorzo);
-          szorzok.Add(csapatok[0]);
-          szorzok.Add(vendegSzorzo);
-          szorzok.Add(csapatok[1]);
-          szorzok.Add(dontetlenSzorzo);
-
-          Console.WriteLine($"{szorzok[1]},{szorzok[0]},{szorzok[3]},{szorzok[2]},{szorzok[4]}");*/
+        
 
     }
 }
