@@ -204,17 +204,20 @@ namespace Fogadas_zaro
         public void adatkiiratasszorzok(double[] szorzo, double dontetlen)
         {
             connection.Open();
-           
             command.Parameters.Clear();
-            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Hazai',@szorzo); "; 
+
+            command.CommandText = "UPDATE fogadasi_lehetoseg SET szorzo = @szorzo WHERE fogadasi_szam = 1;";
             command.Parameters.AddWithValue("@szorzo", szorzo[0]);
             command.ExecuteNonQuery();
-            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Vendég',@szorzo); ";
+            command.Parameters.Clear();
+            command.CommandText = "UPDATE fogadasi_lehetoseg SET szorzo = @szorzo WHERE fogadasi_szam = 2;";
             command.Parameters.AddWithValue("@szorzo", szorzo[1]);
             command.ExecuteNonQuery();
-            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Döntetlen',@szorzo); ";
+            command.Parameters.Clear();
+            command.CommandText = "UPDATE fogadasi_lehetoseg SET szorzo = @szorzo WHERE fogadasi_szam = 3;";
             command.Parameters.AddWithValue("@szorzo", dontetlen);
             command.ExecuteNonQuery();
+            command.Parameters.Clear();
             connection.Close();
 
         }
