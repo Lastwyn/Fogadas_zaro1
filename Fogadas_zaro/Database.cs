@@ -201,5 +201,22 @@ namespace Fogadas_zaro
             connection.Close();
 
         }
+        public void adatkiiratasszorzok(double[] szorzo, double dontetlen)
+        {
+            connection.Open();
+           
+            command.Parameters.Clear();
+            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Hazai',@szorzo); "; 
+            command.Parameters.AddWithValue("@szorzo", szorzo[0]);
+            command.ExecuteNonQuery();
+            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Vendég',@szorzo); ";
+            command.Parameters.AddWithValue("@szorzo", szorzo[1]);
+            command.ExecuteNonQuery();
+            command.CommandText = "INSERT INTO fogadasi_lehetoseg (fogadas_neve,szorzo) VALUES('Döntetlen',@szorzo); ";
+            command.Parameters.AddWithValue("@szorzo", dontetlen);
+            command.ExecuteNonQuery();
+            connection.Close();
+
+        }
     }
 }

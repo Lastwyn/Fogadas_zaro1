@@ -59,12 +59,32 @@ namespace Fogadas_zaro
             }
             
         }
-        static List<string> Szorzok(double hazaisuly, double vendegsuly)
+    
+        static double[] GenerateMultiplier(double hazainyer, double vendegnyer)
         {
-            List<string> szorzok = new List<string>();
-
-
+            double[] szorzok = new double[2];
+            // Szorzó kiszámítása
+            double osszwin = hazainyer+1 + vendegnyer+1;
+            double hazaiszorzo = osszwin / (hazainyer+1);          
+            double vendegszorzo = osszwin / (vendegnyer+1);
+           
+            if (hazaiszorzo>vendegszorzo)
+            {
+                vendegszorzo = vendegszorzo * 1.2;
+            }
+            if (hazaiszorzo<vendegszorzo)
+            {
+                hazaiszorzo = hazaiszorzo * 1.2;
+            }  
+            szorzok[0] = Math.Round(hazaiszorzo, 2); 
+            szorzok[1] = Math.Round(vendegszorzo, 2);
             return szorzok;
+        }
+        // Szorzó generálása a döntetlenre
+        static double GenerateDrawMultiplier(double homeTeamMultiplier, double awayTeamMultiplier)
+        {
+            double drawMultiplier =(homeTeamMultiplier + awayTeamMultiplier) / 1.5;
+            return drawMultiplier;
         }
         static void Main(string[] args)
         {
@@ -101,7 +121,7 @@ namespace Fogadas_zaro
             Console.WriteLine(vendegrange);
             Console.WriteLine(hazainyer);
             Console.WriteLine(vendegnyer);
-            Szorzok(hazaisuly,vendegsuly);
+
             Console.WriteLine($"{csapatok[0]} {csapatok[1]}");
             Console.WriteLine($"{csapatnev[0]} {csapatnev[1]}");           
             int[] eredmeny = sorsolas(hazairange,vendegrange,rng);
@@ -117,11 +137,16 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{jatekos.Jatekos_nev}---{jatekos.Pozicio}");
             }
 
-            database.adatkiiratas($"{eredmeny[1]}-{eredmeny[2]}", hazaigollovok.Concat(vendeggollovok).ToList(), eredmeny[1] + eredmeny[2], csapatok[0], csapatok[1]);
-
-      
+            // database.adatkiiratas($"{eredmeny[1]}-{eredmeny[2]}", hazaigollovok.Concat(vendeggollovok).ToList(), eredmeny[1] + eredmeny[2], csapatok[0], csapatok[1]);
+           
+            // szorzok
+            double[] multiplier = GenerateMultiplier(hazainyer, vendegnyer);
+            double drawMultiplier = GenerateDrawMultiplier(multiplier[0], multiplier[1]);
+            Console.WriteLine("Hazai: " + multiplier[0]);
+            Console.WriteLine("Vendég: " + multiplier[1]);
+            Console.WriteLine("Döntetlen: " + Math.Round(drawMultiplier, 2));
             Console.ReadKey();
-
+            database.adatkiiratasszorzok(multiplier,drawMultiplier);
         }
         
 
