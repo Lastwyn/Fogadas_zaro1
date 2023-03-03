@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 
 namespace Fogadas_zaro
@@ -113,6 +114,8 @@ namespace Fogadas_zaro
             Console.WriteLine("Döntetlen: " + drawMultiplier);
             Console.WriteLine("-----------------");
             database.adatkiiratasszorzok(multiplier, drawMultiplier);
+            database.adatki(csapatok[0], csapatok[1]);
+            Thread.Sleep(300000);
             //meccs
             double suly = Convert.ToDouble(vendegnyer - hazainyer) / 10;
             double hazaisuly = 0;
@@ -166,7 +169,7 @@ namespace Fogadas_zaro
                 Console.WriteLine($"{jatekos.Jatekos_nev}---{jatekos.Pozicio}");              
             }
             Console.WriteLine("-------------------");
-            // database.adatkiiratas($"{eredmeny[1]}-{eredmeny[2]}", hazaigollovok.Concat(vendeggollovok).ToList(), eredmeny[1] + eredmeny[2], csapatok[0], csapatok[1]);
+            database.adatupdate($"{eredmeny[1]}-{eredmeny[2]}", hazaigollovok.Concat(vendeggollovok).ToList(), eredmeny[1] + eredmeny[2],database.getlastmeccs());
             Console.ReadKey();
         }
         

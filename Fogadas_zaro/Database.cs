@@ -74,6 +74,24 @@ namespace Fogadas_zaro
             connection.Close();
             return temp;
         }
+        public int getlastmeccs()
+        {
+            command.Parameters.Clear();
+            command.CommandText = "SELECT meccs_id FROM meccs_eredmeny ORDER BY meccs_id DESC LIMIT 1;";
+
+            connection.Open();
+            using (MySqlDataReader dr = command.ExecuteReader())
+            {
+                if (dr.Read())
+                {
+                    int temp = dr.GetInt32("meccs_id");
+                    connection.Close();
+                    return temp;
+                }
+            }
+            return -1;
+        }
+
         public string[] csapatnev(int[] csapat)
         {
             string[] csapatnev = new string[2];
@@ -180,9 +198,20 @@ namespace Fogadas_zaro
             connection.Close(); 
             return golovok;         
         }
-        
 
-        public void adatkiiratas(string eredmeny, List<Jatekos> gollovo, int golszam, int hazaiid, int vendegid)
+        public void adatki(int hazai_id, int vendeg_id)
+        {
+
+            command.Parameters.Clear();
+            command.CommandText = "INSERT INTO `meccs_eredmeny`(`hazai_id`, `vendeg_id`) VALUES (@hazai,@vendeg)";
+            command.Parameters.AddWithValue("@hazai", hazai_id);
+            command.Parameters.AddWithValue("@vendeg", vendeg_id);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+
+        }
+        public void adatupdate(string eredmeny, List<Jatekos> gollovo, int golszam, int meccs_id)
         {
             string jatekos = "";
             foreach ( Jatekos j in gollovo)
@@ -190,12 +219,11 @@ namespace Fogadas_zaro
                jatekos += j.Jatekos_nev + ",";
             }
             command.Parameters.Clear();
-            command.CommandText = "INSERT INTO meccs_eredmeny (eredmeny,gol_szerzo,golszam,hazai_id,vendeg_id) VALUES(@eredmeny, @golszerzo, @golszam, @hazai, @vendeg); ";
+            command.CommandText = "UPDATE meccs_eredmeny SET eredmeny = @eredmeny, gol_szerzo = @golszerzo, golszam = @golszam WHERE meccs_id = @meccs_id; ";
             command.Parameters.AddWithValue("@eredmeny", eredmeny);
             command.Parameters.AddWithValue("@golszerzo", jatekos);
             command.Parameters.AddWithValue("@golszam", golszam);
-            command.Parameters.AddWithValue("@hazai", hazaiid);
-            command.Parameters.AddWithValue("@vendeg", vendegid);
+            command.Parameters.AddWithValue("@meccs_id", meccs_id);
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();

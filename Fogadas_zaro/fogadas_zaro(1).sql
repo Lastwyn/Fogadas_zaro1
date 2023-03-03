@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Feb 22. 20:10
--- Kiszolgáló verziója: 10.4.21-MariaDB
--- PHP verzió: 8.0.10
+-- Létrehozás ideje: 2023. Már 01. 13:33
+-- Kiszolgáló verziója: 10.4.22-MariaDB
+-- PHP verzió: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,14 +20,16 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `fogadas_zaro`
 --
+CREATE DATABASE IF NOT EXISTS `fogadas_zaro` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `fogadas_zaro`;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `be/ki_fizetes`
+-- Tábla szerkezet ehhez a táblához `be_ki_fizetes`
 --
 
-CREATE TABLE `be/ki_fizetes` (
+CREATE TABLE `be_ki_fizetes` (
   `penztarca_id` int(11) NOT NULL,
   `datum` date NOT NULL,
   `kartyaszam` int(11) NOT NULL,
@@ -78,6 +80,15 @@ CREATE TABLE `fogadasi_lehetoseg` (
   `fogadas_neve` varchar(255) NOT NULL,
   `szorzo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `fogadasi_lehetoseg`
+--
+
+INSERT INTO `fogadasi_lehetoseg` (`fogadasi_szam`, `fogadas_neve`, `szorzo`) VALUES
+(1, 'Hazai', 1.92),
+(2, 'Vendég', 2.67),
+(3, 'Döntetlen', 3.06);
 
 -- --------------------------------------------------------
 
@@ -174,7 +185,10 @@ INSERT INTO `meccs_eredmeny` (`meccs_id`, `eredmeny`, `gol_szerzo`, `golszam`, `
 (11, '2-0', '', 2, 3, 4),
 (12, '2-3', '', 5, 1, 3),
 (13, '2-0', '', 2, 2, 4),
-(14, '0-3', '', 3, 4, 2);
+(14, '0-3', '', 3, 4, 2),
+(15, '2-2', 'Ádám Lang,László Kleinheisler,Benjamin Pavard,Benjamin Pavard,', 4, 3, 2),
+(16, '0-6', 'Dominik Szoboszlai,Dominik Szoboszlai,Roland Sallai,Roland Sallai,Dominik Szoboszlai,Willi Orbán,', 6, 4, 3),
+(17, '0-2', 'Adrien Rabiot,Paul Pogba,', 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -214,9 +228,9 @@ CREATE TABLE `penztarca` (
 --
 
 --
--- A tábla indexei `be/ki_fizetes`
+-- A tábla indexei `be_ki_fizetes`
 --
-ALTER TABLE `be/ki_fizetes`
+ALTER TABLE `be_ki_fizetes`
   ADD PRIMARY KEY (`penztarca_id`);
 
 --
@@ -287,13 +301,13 @@ ALTER TABLE `fogadas`
 -- AUTO_INCREMENT a táblához `fogadasi_lehetoseg`
 --
 ALTER TABLE `fogadasi_lehetoseg`
-  MODIFY `fogadasi_szam` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fogadasi_szam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `meccs_eredmeny`
 --
 ALTER TABLE `meccs_eredmeny`
-  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT a táblához `nemzetek`
@@ -312,9 +326,9 @@ ALTER TABLE `penztarca`
 --
 
 --
--- Megkötések a táblához `be/ki_fizetes`
+-- Megkötések a táblához `be_ki_fizetes`
 --
-ALTER TABLE `be/ki_fizetes`
+ALTER TABLE `be_ki_fizetes`
   ADD CONSTRAINT `FK1` FOREIGN KEY (`penztarca_id`) REFERENCES `penztarca` (`penztarca_id`);
 
 --
