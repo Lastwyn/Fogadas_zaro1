@@ -199,11 +199,12 @@ namespace Fogadas_zaro
             return golovok;         
         }
 
-        public void adatki(int hazai_id, int vendeg_id)
+        public void adatki(string eredmeny,int hazai_id, int vendeg_id)
         {
 
             command.Parameters.Clear();
-            command.CommandText = "INSERT INTO `meccs_eredmeny`(`hazai_id`, `vendeg_id`) VALUES (@hazai,@vendeg)";
+            command.CommandText = "INSERT INTO `meccs_eredmeny`(eredmeny,`hazai_id`, `vendeg_id`) VALUES (@eredmeny,@hazai,@vendeg)";
+            command.Parameters.AddWithValue("@eredmeny", eredmeny);
             command.Parameters.AddWithValue("@hazai", hazai_id);
             command.Parameters.AddWithValue("@vendeg", vendeg_id);
             connection.Open();

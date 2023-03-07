@@ -114,7 +114,7 @@ namespace Fogadas_zaro
             Console.WriteLine("Döntetlen: " + drawMultiplier);
             Console.WriteLine("-----------------");
             database.adatkiiratasszorzok(multiplier, drawMultiplier);
-            database.adatki(csapatok[0], csapatok[1]);
+            database.adatki("0-0",csapatok[0], csapatok[1]);
             Thread.Sleep(300000);
             //meccs
             double suly = Convert.ToDouble(vendegnyer - hazainyer) / 10;
