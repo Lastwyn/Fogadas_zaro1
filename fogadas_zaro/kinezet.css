@@ -1,0 +1,189 @@
+body {
+    background-color: #232323;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "col1 col2 col3";
+  text-align: center;
+}
+
+.col1 {
+  grid-area: col1;
+  flex-direction: column;
+}
+
+.col2 {
+  grid-area: col2;
+  flex-direction: column;
+}
+
+.col3 {
+  grid-area: col3;
+  flex-direction: column;
+}
+  
+.grid-container-szorzok {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "col1-szorzok col2-szorzok col3-szorzok";
+
+}
+
+.col1-szorzok {
+  grid-area: col1-szorzok;
+  flex-direction: column;
+}
+
+.col2-szorzok {
+  grid-area: col2-szorzok;
+  flex-direction: column;
+}
+
+.col3-szorzok {
+  grid-area: col3-szorzok;
+  flex-direction: column;
+}
+
+  /* Header styles */
+  header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header nav li {
+    margin-right: 20px;
+  }
+  
+  header nav li:last-child {
+    margin-right: 0;
+  }
+  
+  header nav a {
+    font-size: 18px;
+  }
+  
+  header .login {
+    display: flex;
+    align-items: center;
+  }
+  
+  header .login a {
+    margin-right: 10px;
+  }
+  
+  header .login button {
+    font-weight: bold;
+  }
+/* fooldal.php */
+  .kozos{
+    display: inline-flex;
+    margin: 2% 2% 3% 2%;
+    width: 95vw;
+    max-height: 100vh;
+    /*overflow: hidden;*/
+   /* overflow: scroll;*/
+  }
+  .meccsek{
+    background-color: lightseagreen;
+    width: 100%;
+    border-radius: 13px;
+    margin-right: 2%;
+  }
+  .meccsek2{
+    background-color: lightsalmon;
+    width: 50%;
+    border-radius: 13px;
+    text-align: center;
+  }
+  .cim{
+    text-align: center;
+  }
+  .hazaitable{
+    width: 33%;
+    text-align: center;
+  }
+  .eredmenyektable{
+    width: 33%;
+    text-align: center;
+  }
+  .vendegtable{
+    width: 33%;
+    text-align: center;
+  }
+  /* Footer styles */
+  footer {
+    background-color: #444;
+    color: #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+
+  /* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Bet box styles */
+.bet-box {
+  background-color: #ddd;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bet-box:hover {
+  background-color: #ccc;
+}
