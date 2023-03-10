@@ -10,6 +10,14 @@ class Database {
     private $password = '';
     protected $dbc = null;
 
+    public function security($data){
+        return htmlspecialchars(trim($data));
+    }
+
+    public function Hash($data){
+        return hash('sha512', $data . date("YYYY-mm-dd"));
+    }
+
     public function __construct() {
         try {
             $this->dbc = new mysqli($this->host, $this->user, $this->password, $this->database);

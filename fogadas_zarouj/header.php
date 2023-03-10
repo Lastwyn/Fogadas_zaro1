@@ -1,3 +1,7 @@
+<?php 
+include('database.php');
+
+?>
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -21,10 +25,9 @@
             <li><a href="#">Sports Betting</a></li>
             <li><a href="#">Horse Racing</a></li>
             <li><a href="#">Virtual Sports</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="register.php">Regisztráció</a></li>
+            <li><a href="#">Bejelentkezés</a></li>
           </ul>
-          <button class="button">Sign Up</button>
         </nav>
       </header>
     </div>
