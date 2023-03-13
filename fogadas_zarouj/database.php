@@ -35,7 +35,11 @@ class Database {
             echo "Lekérdezési hiba: " . $exc->getMessage();
         }
         $result = $utasitas->get_result();
-        return $result;
+        if ($result) {
+            return $result;
+        } else {
+            return $utasitas->affected_rows;
+        }            
     }
 
     public function RunSQLPrms($sql, $types, ...$params) {

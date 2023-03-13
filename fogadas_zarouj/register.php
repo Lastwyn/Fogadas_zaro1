@@ -3,7 +3,7 @@ include('header.php');
 if (isset($_POST['regisztracio'])) {
     $felhasznalo_nev = $db->security($_POST['felhasznalo_nev']);
     $email = $db->security($_POST['email']);
-    $password = $db->security($_POST['password']);
+    $password = password_hash($db->security($_POST['jelszo']), PASSWORD_DEFAULT);
     $okmany = $db->security($_POST['okmany']);
     $neme = $db->security($_POST['nem']);
     $orszag = $db->security($_POST['orszag']);
@@ -20,7 +20,10 @@ if (isset($_POST['regisztracio'])) {
     }elseif ($E_ellenorzes != false) {
         echo 'Az email-cím már foglalt!';
     }else {
-        
+        $hash = $db->Hash($felhasznalo_nev);
+        $sql = "INSERT INTO felhasznaloi_adatok VALUES ('null', '$felhasznalo_nev', '$email', '$password','$hash', '". date("Y-m-d H:i:s") . "','$okmany', '$neme', '$orszag');";
+        $result = $db->RunSQL($sql);
+        echo 'Sikeres regisztráció!';
     }
 
 }
@@ -61,3 +64,4 @@ if (isset($_POST['regisztracio'])) {
             </form>
         </div>
     </main>
+</div>

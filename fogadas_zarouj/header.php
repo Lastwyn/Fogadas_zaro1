@@ -1,6 +1,6 @@
 <?php 
 include('database.php');
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -23,10 +23,14 @@ include('database.php');
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Sports Betting</a></li>
-            <li><a href="#">Horse Racing</a></li>
-            <li><a href="#">Virtual Sports</a></li>
+            
+            <?php if(isset($_SESSION['felhasz_nev'])) : ?>
+            <li><a href="logout.php" role="button">Kijelentkezés</a></li>
+            <li><?=$_SESSION['felhasz_nev']; ?></li>
+            <?php else : ?>
             <li><a href="register.php">Regisztráció</a></li>
-            <li><a href="#">Bejelentkezés</a></li>
+            <li><a href="login.php">Bejelentkezés</a></li>
+            <?php endif; ?>
           </ul>
         </nav>
       </header>
