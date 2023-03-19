@@ -4,13 +4,14 @@ if(isset($_POST['bejelentkezes'])){
     $email = $_POST['email'];
     $password = $_POST['jelszo'];
 
-    $sql = "SELECT * FROM felhasznaloi_adatok WHERE email = '$email';";
+    $sql = "SELECT * FROM felhasznaloi_adatok INNER JOIN penztarca ON penztarca.felhasz_id = felhasznaloi_adatok.felhasz_id WHERE email = '$email';";
     $result = $db->RunSQL($sql);
     $felhasznalo = $result->fetch_assoc();
 
     if ($felhasznalo != false && password_verify($password, $felhasznalo['jelszo'])) {
         $_SESSION['email'] = $felhasznalo['email'];
         $_SESSION['felhasz_nev'] = $felhasznalo['felhasz_nev'];
+        $_SESSION['egyenleg'] = $felhasznalo['egyenleg'];
         header('Location: Foldal.php');
     } else {
         echo 'Valami szar!'; 

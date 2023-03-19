@@ -1,11 +1,117 @@
 body {
-    background-color: #232323;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
-  }
+  background-color: #232323;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/*#region penztarca.php*/
+.kozos1 {
+position: absolute;
+  margin: 7% 2% 3% 2%;
+  width: 95vw;
+  min-height: 10vw;
+}
+.pf{
+  margin-top: 15vw;
+  float: left;
+  width: 40vw;
+  text-align: center;
+}
+.pk{
+  margin-top: 15vw;
+  float: right;
+  width: 40vw;
+  text-align: center;
+}
+.kozep {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.penzfeltoltes {
+  background-color: lightseagreen;
+  width: 50%;
+  max-height: 20vh;
+  border-radius: 13px;
+  margin-right: 2%;
+}
+
+.penzkifizetes {
+  background-color: lightsalmon;
+  width: 50%;
+  max-height: 20vh;
+  border-radius: 13px;
+  text-align: center;
+}
+
+/*#endregion penztarca.php*/
+
+/*#region grid*/
+/* grid */
+.grid-container-adat {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "col1 col2";
+  text-align: center;
+}
+.col1-adat {
+  grid-area: col1;
+  flex-direction: column;
+}
+
+.col2-adat {
+  grid-area: col2;
+  flex-direction: column;
+}
+.grid-container-penzfeltoltes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "col1-penzfeltoltes col2-penzfeltoltes col3-penzfeltoltes";
+  text-align: center;
+}
+
+.col1-penzfeltoltes {
+  grid-area: col1-penzfeltoltes;
+  flex-direction: column;
+}
+
+.col2-penzfeltoltes {
+  grid-area: col2-penzfeltoltes;
+  flex-direction: column;
+}
+
+.col3-penzfeltoltes {
+  grid-area: col3-penzfeltoltes;
+  flex-direction: column;
+}
+
+.grid-container-penzkifizetes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "col1-penzkifizetes col2-penzkifizetes col3-penzkifizetes";
+  text-align: center;
+}
+
+.col1-penzkifizetes {
+  grid-area: col1-penzkifizetes;
+  flex-direction: column;
+}
+
+.col2-penzkifizetes {
+  grid-area: col2-penzkifizetes;
+  flex-direction: column;
+}
+
+.col3-penzkifizetes {
+  grid-area: col3-penzkifizetes;
+  flex-direction: column;
+}
 
 .grid-container {
   display: grid;
@@ -28,7 +134,7 @@ body {
   grid-area: col3;
   flex-direction: column;
 }
-  
+
 .grid-container-szorzok {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -51,97 +157,112 @@ body {
   flex-direction: column;
 }
 
-  /* Header styles */
-  header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  header h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  header nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header nav li {
-    margin-right: 20px;
-  }
-  
-  header nav li:last-child {
-    margin-right: 0;
-  }
-  
-  header nav a {
-    font-size: 18px;
-  }
-  
-  header .login {
-    display: flex;
-    align-items: center;
-  }
-  
-  header .login a {
-    margin-right: 10px;
-  }
-  
-  header .login button {
-    font-weight: bold;
-  }
-/* fooldal.php */
-  .kozos{
-    display: inline-flex;
-    margin: 2% 2% 3% 2%;
-    width: 95vw;
-    min-height: 100vh;
+/*#endregion grid*/
 
-    /*overflow: hidden;*/
-   /* overflow: scroll;*/
-  }
-  .meccsek{
-    background-color: lightseagreen;
-    width: 100%;
-    border-radius: 13px;
-    margin-right: 2%;
-  }
-  .meccsek2{
-    background-color: lightsalmon;
-    width: 50%;
-    border-radius: 13px;
-    text-align: center;
-  }
-  .cim{
-    text-align: center;
-  }
-  .hazaitable{
-    width: 33%;
-    text-align: center;
-  }
-  .eredmenyektable{
-    width: 33%;
-    text-align: center;
-  }
-  .vendegtable{
-    width: 33%;
-    text-align: center;
-  }
-  /* Footer styles */
-  footer {
-    background-color: #444;
-    color: #ccc;
-    padding: 20px;
-    text-align: center;
-  }
-  
+/*#region Header*/
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
 
-  /* Modal styles */
+header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav li {
+  margin-right: 20px;
+}
+
+header nav li:last-child {
+  margin-right: 0;
+}
+
+header nav a {
+  font-size: 18px;
+}
+
+header .login {
+  display: flex;
+  align-items: center;
+}
+
+header .login a {
+  margin-right: 10px;
+}
+
+header .login button {
+  font-weight: bold;
+}
+
+/*#endregion Header*/
+
+/*#region foldal.php */
+.kozos {
+  display: inline-flex;
+  margin: 2% 2% 3% 2%;
+  width: 95vw;
+  min-height: 100vh;
+
+  /*overflow: hidden;*/
+  /* overflow: scroll;*/
+}
+
+.meccsek {
+  background-color: lightseagreen;
+  width: 100%;
+  border-radius: 13px;
+  margin-right: 2%;
+}
+
+.meccsek2 {
+  background-color: lightsalmon;
+  width: 50%;
+  border-radius: 13px;
+  text-align: center;
+}
+
+.cim {
+  text-align: center;
+}
+
+.hazaitable {
+  width: 33%;
+  text-align: center;
+}
+
+.eredmenyektable {
+  width: 33%;
+  text-align: center;
+}
+
+.vendegtable {
+  width: 33%;
+  text-align: center;
+}
+
+/*#endregion foldal.php*/
+
+/*#region Footer*/
+footer {
+  background-color: #444;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+/*#endregion Footer*/
+
+/*#region fogad*/
 .modal {
   display: none;
   position: fixed;
@@ -151,7 +272,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -188,9 +309,15 @@ body {
 .bet-box:hover {
   background-color: #ccc;
 }
+
+/*#endregion fogad*/
+
+/*#region register*/
 .register-bodycard {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
+
+/*#endregion register*/

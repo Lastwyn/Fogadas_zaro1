@@ -21,16 +21,22 @@ session_start();
         <h1>My Betting Site</h1>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="Foldal.php">Home</a></li>
             <li><a href="#">Sports Betting</a></li>
             
             <?php if(isset($_SESSION['felhasz_nev'])) : ?>
+            
             <li><a href="logout.php" role="button">Kijelentkezés</a></li>
+            <li><a href="penztarca.php">Pénztárca</a></li>
+            <?php if(isset($_SESSION['egyenleg'])) : ?>  
+            <li><?=$_SESSION['egyenleg']; ?> Ft</li>
+            <?php endif; ?>
             <li><?=$_SESSION['felhasz_nev']; ?></li>
             <?php else : ?>
             <li><a href="register.php">Regisztráció</a></li>
             <li><a href="login.php">Bejelentkezés</a></li>
             <?php endif; ?>
+
           </ul>
         </nav>
       </header>

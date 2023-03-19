@@ -64,4 +64,4 @@
   <script src="proba.js"></script>
 </main>
 
-<?php include('footer.php') ?>
+<?php include('footer.php');?>

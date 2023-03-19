@@ -25,7 +25,11 @@ if (isset($_POST['regisztracio'])) {
         $result = $db->RunSQL($sql);
         echo 'Sikeres regisztráció!';
     }
-
+    $sql2 = "SELECT felhasz_id FROM felhasznaloi_adatok ORDER BY felhasz_id DESC LIMIT 1";
+    $result2 = $db->RunSQL($sql2);
+    $fid = $result2->fetch_assoc()['felhasz_id'];
+    $sql1 = "INSERT INTO penztarca VALUES ('$fid','null','0');";
+    $result = $db->RunSQL($sql1);
 }
 
 ?>
