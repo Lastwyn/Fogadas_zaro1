@@ -8,44 +8,34 @@ body {
 }
 
 /*#region penztarca.php*/
-.kozos1 {
-position: absolute;
-  margin: 7% 2% 3% 2%;
+.button{
+
+ margin-top: 8vw;
+ margin-right: 2vw;
+ margin-left: 2vw;
+ padding: 1vw;
+}
+
+.kozos1{
+  display: inline-flex;
+  margin: 2% 2% 3% 2%;
   width: 95vw;
-  min-height: 10vw;
-}
-.pf{
-  margin-top: 15vw;
-  float: left;
-  width: 40vw;
-  text-align: center;
-}
-.pk{
-  margin-top: 15vw;
-  float: right;
-  width: 40vw;
-  text-align: center;
-}
-.kozep {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  min-height: 58vh;
 }
 
 .penzfeltoltes {
   background-color: lightseagreen;
-  width: 50%;
-  max-height: 20vh;
+  width: 100%;
+  max-height: 40vh;
   border-radius: 13px;
   margin-right: 2%;
+  text-align: center;
 }
 
 .penzkifizetes {
   background-color: lightsalmon;
   width: 50%;
-  max-height: 20vh;
+  max-height: 30vh;
   border-radius: 13px;
   text-align: center;
 }
@@ -74,6 +64,7 @@ position: absolute;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "col1-penzfeltoltes col2-penzfeltoltes col3-penzfeltoltes";
   text-align: center;
+ 
 }
 
 .col1-penzfeltoltes {
@@ -91,7 +82,7 @@ position: absolute;
   flex-direction: column;
 }
 
-.grid-container-penzkifizetes {
+/*.grid-container-penzkifizetes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "col1-penzkifizetes col2-penzkifizetes col3-penzkifizetes";
@@ -111,7 +102,7 @@ position: absolute;
 .col3-penzkifizetes {
   grid-area: col3-penzkifizetes;
   flex-direction: column;
-}
+}*/
 
 .grid-container {
   display: grid;
@@ -258,6 +249,7 @@ footer {
   color: #ccc;
   padding: 20px;
   text-align: center;
+
 }
 
 /*#endregion Footer*/

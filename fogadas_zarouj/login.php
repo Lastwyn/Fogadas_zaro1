@@ -11,7 +11,8 @@ if(isset($_POST['bejelentkezes'])){
     if ($felhasznalo != false && password_verify($password, $felhasznalo['jelszo'])) {
         $_SESSION['email'] = $felhasznalo['email'];
         $_SESSION['felhasz_nev'] = $felhasznalo['felhasz_nev'];
-        $_SESSION['egyenleg'] = $felhasznalo['egyenleg'];
+        $_SESSION['felhasz_id'] = $felhasznalo['felhasz_id'];
+        $_SESSION['penztarca_id'] = $felhasznalo['penztarca_id'];
         header('Location: Foldal.php');
     } else {
         echo 'Valami szar!'; 

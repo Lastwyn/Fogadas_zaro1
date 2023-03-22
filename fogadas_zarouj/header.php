@@ -1,6 +1,12 @@
 <?php 
 include('database.php');
 session_start();
+if(isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_SESSION['felhasz_id']) : $_SESSION['felhasz_id'] = ""){
+$sql2 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " .$_SESSION['felhasz_id'].";";
+
+$result2 = $db->RunSQL($sql2);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -28,9 +34,9 @@ session_start();
             
             <li><a href="logout.php" role="button">Kijelentkezés</a></li>
             <li><a href="penztarca.php">Pénztárca</a></li>
-            <?php if(isset($_SESSION['egyenleg'])) : ?>  
-            <li><?=$_SESSION['egyenleg']; ?> Ft</li>
-            <?php endif; ?>
+            <?php while ($row = $result2->fetch_assoc()) : ?>
+            <li><?= $row['egyenleg']; ?>Ft</li>
+            <?php endwhile; ?>
             <li><?=$_SESSION['felhasz_nev']; ?></li>
             <?php else : ?>
             <li><a href="register.php">Regisztráció</a></li>
