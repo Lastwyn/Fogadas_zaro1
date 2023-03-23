@@ -9,17 +9,19 @@ window.onclick = function (e) {
   }
 }
 
-function openBetModal(team, odd) {
+function openBetModal(team, odd, value2) {
   setTimeout(() => {
   
   modalopen = true;
   modal.style.display = "block";
-  modalTitle.innerHTML = team + " (" + odd + ")";
+  modalTitle.innerHTML = team + " (" + odd + value2 +")";
+  document.getElementById("fid").value = value2;
 
   // Az ablak bezárása
-  document.getElementById("closebtn").onclick = function () {
+  document.getElementById("closebtn").onclick = function (event) {
     modal.style.display = "none";
+    event.preventDefault();
   }
 
-}, "2");  
+}, "2"); 
 }

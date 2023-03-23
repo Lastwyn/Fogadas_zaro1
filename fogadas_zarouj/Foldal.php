@@ -1,4 +1,21 @@
 <?php include('header.php');
+ 
+
+if (isset($_POST['kuld'])) {
+ $sql1 = "SELECT meccs_id, lefutott_e FROM meccs_eredmeny ORDER BY meccs_id DESC LIMIT 1";
+  $result1 = $db->RunSQL($sql1);
+  $result1 = $result1->fetch_assoc();
+  if ($result1['lefutott_e'] == 0) {
+  $osszeg = $_POST['betAmount'];
+  $fid = $_POST['fid'];
+
+  $sql = "  INSERT INTO `fogadas`(`felhasz_id`, `fogadasi_osszeg`, `profit/buko`, `meccs_id`, `fogadasi_szam`) VALUES ('".$_SESSION['felhasz_id']."','$osszeg','0','".$result1['meccs_id']."','$fid')";
+  $result = $db->RunSQL($sql);
+  }else {
+    echo 'valami nem jó!';
+  }
+  
+}
 ?>
 <script>
   setInterval(function() {
@@ -10,16 +27,18 @@
 
   }, 10000);
 </script>
-
+<form method="post">
 <div id="betModal" class="modal">
   <div class="modal-content">
     <h2 id="betModalTitle"></h2>
     <p>Válassz összeget:</p>
-    <input type="number" id="betAmount" min="1" max="1000">
-    <button>Küldés</button>
+    <input type="number" id="betAmount" name="betAmount" min="1" max="1000">
+    <input type="hidden" id="fid" name="fid">
+    <button name="kuld" id="kuld">Küldés</button>
     <button id="closebtn">&times;</button>
   </div>
 </div>
+</form>
 
 <main>
   <div class="kozos">

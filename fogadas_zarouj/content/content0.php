@@ -18,6 +18,6 @@
     $sql5 = "SELECT * FROM `jatekosok` WHERE `nemzet_id` = ?";
     $jatekosokvendeg = $db->RunSQLPrms($sql5, "i", $result['vendeg_id']);
 
-    $sql6 = "SELECT fogadas_neve, szorzo FROM `fogadasi_lehetoseg`  ";
+    $sql6 = "SELECT fogadas_neve, szorzo, fogadasi_szam FROM `fogadasi_lehetoseg`  ";
     $result2 =  $db->RunSQL($sql6)->fetch_all();
 ?>
