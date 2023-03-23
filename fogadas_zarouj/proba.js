@@ -14,7 +14,7 @@ function openBetModal(team, odd, value2) {
   
   modalopen = true;
   modal.style.display = "block";
-  modalTitle.innerHTML = team + " (" + odd + value2 +")";
+  modalTitle.innerHTML = team + " (" + odd + "x" +")";
   document.getElementById("fid").value = value2;
 
   // Az ablak bezárása

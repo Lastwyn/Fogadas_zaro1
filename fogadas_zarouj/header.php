@@ -24,11 +24,11 @@ $result2 = $db->RunSQL($sql2);
   <div class="container">
     <div class="row">
       <header>
-        <h1>My Betting Site</h1>
+        <h1>Tutifix fogadó oldal</h1>
         <nav>
           <ul>
             <li><a href="Foldal.php">Home</a></li>
-            <li><a href="#">Sports Betting</a></li>
+            <li><a href="fogadasok.php">Fogadásaim</a></li>
             
             <?php if(isset($_SESSION['felhasz_nev'])) : ?>
             
