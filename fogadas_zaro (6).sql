@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 23. 09:02
--- Kiszolgáló verziója: 10.4.22-MariaDB
--- PHP verzió: 8.1.2
+-- Létrehozás ideje: 2023. Már 24. 17:20
+-- Kiszolgáló verziója: 10.4.21-MariaDB
+-- PHP verzió: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,7 +60,8 @@ INSERT INTO `be_ki_fizetes` (`id`, `penztarca_id`, `datum`, `kartyaszam`, `ossze
 (15, 2, '2023-03-20', 123456789123, -2000, 'teszt'),
 (16, 2, '2023-03-23', 12312321123, 2000, 'az'),
 (17, 2, '2023-03-23', 123123, -1000, 'az'),
-(18, 2, '2023-03-20', 213123123, 2000, 'az');
+(18, 2, '2023-03-20', 213123123, 2000, 'az'),
+(19, 6, '2023-03-24', 21332, 1100, 'az');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,7 @@ CREATE TABLE `fogadas` (
   `felhasz_id` int(11) NOT NULL,
   `fog_id` int(11) NOT NULL,
   `fogadasi_osszeg` int(11) NOT NULL,
-  `profit/buko` double NOT NULL,
+  `profit_buko` double NOT NULL,
   `meccs_id` int(11) NOT NULL,
   `fogadasi_szam` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -108,8 +109,11 @@ CREATE TABLE `fogadas` (
 -- A tábla adatainak kiíratása `fogadas`
 --
 
-INSERT INTO `fogadas` (`felhasz_id`, `fog_id`, `fogadasi_osszeg`, `profit/buko`, `meccs_id`, `fogadasi_szam`) VALUES
-(4, 5, 200, 3000, 58, 1);
+INSERT INTO `fogadas` (`felhasz_id`, `fog_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`) VALUES
+(4, 5, 200, 3000, 58, 1),
+(5, 9, 100, 0, 59, 1),
+(5, 10, 3, 0, 59, 1),
+(5, 11, 200, 0, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -128,9 +132,9 @@ CREATE TABLE `fogadasi_lehetoseg` (
 --
 
 INSERT INTO `fogadasi_lehetoseg` (`fogadasi_szam`, `fogadas_neve`, `szorzo`) VALUES
-(1, 'Hazai', 2),
-(2, 'Vendég', 2),
-(3, 'Döntetlen', 2.67);
+(1, 'Hazai', 3),
+(2, 'Vendég', 1.8),
+(3, 'Döntetlen', 3.2);
 
 -- --------------------------------------------------------
 
@@ -264,7 +268,11 @@ INSERT INTO `meccs_eredmeny` (`meccs_id`, `eredmeny`, `gol_szerzo`, `golszam`, `
 (56, '0-4', 'Attila Fiola,Roland Sallai,Dominik Szoboszlai,Ádám Lang,', 4, 2, 3, 1),
 (57, '2-0', 'Ilkay Gundogan,Toni Kroos,', 2, 1, 3, 1),
 (58, '0-2', 'Matthias Ginter,Matthias Ginter,', 2, 2, 1, 1),
-(59, '0-0', '', 0, 4, 3, 0);
+(59, '0-0', '', 0, 4, 3, 0),
+(60, '2-5', 'N\'Golo Kante,Adrien Rabiot,Robin Gosens,Joshua Kimmich,Robin Gosens,Ilkay Gundogan,Joshua Kimmich,', 7, 2, 1, 1),
+(61, '0-8', 'Toni Kroos,Toni Kroos,Matthias Ginter,Ilkay Gundogan,Joshua Kimmich,Joshua Kimmich,Kai Havertz,Antonio Rudiger,', 8, 2, 1, 1),
+(62, '3-1', 'Marco Verratti,Nicolo Barella,Leonardo Bonucci,Benjamin Pavard,', 4, 4, 2, 1),
+(63, '0-6', 'Emerson Palmieri,Nicolo Barella,Emerson Palmieri,Jorginho,Jorginho,Giovanni Di Lorenzo,', 6, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -306,7 +314,7 @@ CREATE TABLE `penztarca` (
 INSERT INTO `penztarca` (`felhasz_id`, `penztarca_id`, `egyenleg`) VALUES
 (3, 1, 2000),
 (4, 2, 2420),
-(5, 6, 1000);
+(5, 6, 1797);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -375,7 +383,7 @@ ALTER TABLE `penztarca`
 -- AUTO_INCREMENT a táblához `be_ki_fizetes`
 --
 ALTER TABLE `be_ki_fizetes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznaloi_adatok`
@@ -387,7 +395,7 @@ ALTER TABLE `felhasznaloi_adatok`
 -- AUTO_INCREMENT a táblához `fogadas`
 --
 ALTER TABLE `fogadas`
-  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `fogadasi_lehetoseg`
@@ -399,7 +407,7 @@ ALTER TABLE `fogadasi_lehetoseg`
 -- AUTO_INCREMENT a táblához `meccs_eredmeny`
 --
 ALTER TABLE `meccs_eredmeny`
-  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT a táblához `nemzetek`

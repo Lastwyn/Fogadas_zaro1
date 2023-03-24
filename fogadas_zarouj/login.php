@@ -1,5 +1,6 @@
-<?php
+<?php 
 include('header.php');
+
 if(isset($_POST['bejelentkezes'])){
     $email = $_POST['email'];
     $password = $_POST['jelszo'];

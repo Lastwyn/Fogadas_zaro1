@@ -1,4 +1,6 @@
-<?php include('header.php');
+<?php 
+include('header.php');
+
 ?>
 <main>
     <h1>Fogadásaid</h1>
@@ -24,7 +26,7 @@
     $sqlle = "SELECT fogadasi_osszeg FROM fogadas ORDER BY `fog_id` DESC LIMIT 1";
     $result = $db->RunSQL($sqlle);
     $result = $result->fetch_assoc();   
-    $sql2 = "UPDATE fogadas SET profit_buko = '".$result['fogadasi_osszeg']."' WHERE  ;";
+    $sql2 = "UPDATE fogadas SET profit_buko = '"."-".$result['fogadasi_osszeg']."' WHERE  ;";
     $result2 = $db->RunSQL($sql2);
  
     ?>
