@@ -8,7 +8,6 @@ $result2 = $db->RunSQL($sql2);
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -32,20 +31,17 @@ $result2 = $db->RunSQL($sql2);
             <li><a href="fogadasok.php">Fogadásaim</a></li>
             
             <?php if(isset($_SESSION['felhasz_nev'])) : ?>
-           
+            
             <li><a href="logout.php" role="button">Kijelentkezés</a></li>
             <li><a href="penztarca.php">Pénztárca</a></li>
             <?php while ($row = $result2->fetch_assoc()) : ?>
-
-            <li><?= $row['egyenleg']; ?>Ft</li> 
-
+            <li><?= $row['egyenleg']; ?>Ft</li>
             <?php endwhile; ?>
             <li><?=$_SESSION['felhasz_nev']; ?></li>
             <?php else : ?>
             <li><a href="register.php">Regisztráció</a></li>
             <li><a href="login.php">Bejelentkezés</a></li>
-            <?php endif;?> 
-          
+            <?php endif; ?>
 
           </ul>
         </nav>

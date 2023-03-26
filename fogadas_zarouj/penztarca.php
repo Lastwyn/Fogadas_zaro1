@@ -1,7 +1,6 @@
 <?php include('header.php');
 
 if (isset($_POST['penzbe'])) {
-    print_r($_SESSION);
     $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " .$_SESSION['penztarca_id'] .";";
     $result2 = $db->RunSQL($sql2);
     $fid = $result2->fetch_assoc()['penztarca_id'];
