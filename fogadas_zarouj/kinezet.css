@@ -1,7 +1,7 @@
 body {
-  background-color: #232323;
+  background-color: #0b0c10;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
@@ -151,11 +151,21 @@ body {
 /*#endregion grid*/
 
 /*#region Header*/
+.navbutton{
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+color: white;
+  background-color: #24c6dc;
+  border-radius: 5px;
+}
 header {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  background-color: #16222a;
+  font-family: 'Kanit', sans-serif;
 }
 
 header h1 {
@@ -211,17 +221,23 @@ header .login button {
 }
 
 .meccsek {
-  background-color: lightseagreen;
   width: 100%;
   border-radius: 13px;
   margin-right: 2%;
+
+  background: linear-gradient(360deg, #16222a, #24c6dc);
+
+
 }
 
 .meccsek2 {
-  background-color: lightsalmon;
   width: 50%;
   border-radius: 13px;
   text-align: center;
+ 
+  background: linear-gradient(360deg, #16222a, #24c6dc);
+
+
 }
 
 .cim {
@@ -247,7 +263,7 @@ header .login button {
 
 /*#region Footer*/
 footer {
-  background-color: #444;
+  background-color: #16222a;
   color: #ccc;
   padding: 20px;
   text-align: center;
@@ -294,15 +310,16 @@ footer {
 
 /* Bet box styles */
 .bet-box {
-  background-color: #ddd;
+  background-color:#24c7dc96 ;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 5px 10px 15px #0b1858;
 }
 
 .bet-box:hover {
-  background-color: #ccc;
+  background-color: #24c7dc00;
 }
 
 /*#endregion fogad*/

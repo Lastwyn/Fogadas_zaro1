@@ -1,39 +1,42 @@
 <?php include('header.php');
-$sql6 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " .$_SESSION['felhasz_id'].";";
+$sql6 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " . $_SESSION['felhasz_id'] . ";";
 $result6 = $db->RunSQL($sql6);
 $result6 = $result6->fetch_assoc()['egyenleg'];
 
 if (isset($_POST['penzbe'])) {
-    $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " .$_SESSION['penztarca_id'] .";";
+    $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " . $_SESSION['penztarca_id'] . ";";
     $result2 = $db->RunSQL($sql2);
     $fid = $result2->fetch_assoc()['penztarca_id'];
     $kartyaszam = $db->security($_POST['kartyaszam']);
     $kartyat = $db->security($_POST['kartyat']);
     $osszeg = $db->security($_POST['osszeg']);
-    $sql1 = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','". date("Y-m-d H:i:s") . "','$kartyaszam', '+$osszeg','$kartyat');";
-    $result = $db->RunSQL($sql1);
-    $sql = "UPDATE penztarca SET egyenleg = egyenleg + $osszeg WHERE penztarca_id = '$fid'";
-
-    $result = $db->RunSQL($sql);
-    header('Location:Foldal.php');
+    if ($osszeg >= 1500 && $osszeg <= 2000000) {
+        $sql1 = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '+$osszeg','$kartyat');";
+        $result = $db->RunSQL($sql1);
+        $sql = "UPDATE penztarca SET egyenleg = egyenleg + $osszeg WHERE penztarca_id = '$fid'";
+        $result = $db->RunSQL($sql);
+        header('Location:Foldal.php');
+    }
 }
 if (isset($_POST['penzki'])) {
-    $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " .$_SESSION['penztarca_id'] .";";;
+    $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " . $_SESSION['penztarca_id'] . ";";
     $result2 = $db->RunSQL($sql2);
     $fid = $result2->fetch_assoc()['penztarca_id'];
     $kartyaszam = $db->security($_POST['kartyaszam']);
     $kartyat = $db->security($_POST['kartyat']);
     $osszeg = $db->security($_POST['osszeg']);
-    $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','". date("Y-m-d H:i:s") . "','$kartyaszam', '-$osszeg','$kartyat');";
-    $result = $db->RunSQL($sql);
-    $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
-    $result = $db->RunSQL($sql3);
-    header('Location:Foldal.php');
+    if ($osszeg >= 10000 && $osszeg <= 2000000) {
+        $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '-$osszeg','$kartyat');";
+        $result = $db->RunSQL($sql);
+        $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
+        $result = $db->RunSQL($sql3);
+        header('Location:Foldal.php');
+    }
 }
 
 ?>
 
-<main >
+<main>
     <div class="grid-container-adat">
         <div class="col1-adat">
             <h2>Felhasználó neve:</h2>
@@ -44,18 +47,18 @@ if (isset($_POST['penzki'])) {
             <?php endif; ?>
         </div>
         <div class="col2-adat">
-            <h2>Egyenlege:</h2>        
-                <h3>
-                    <?= $result6; ?> Ft
-                </h3>
+            <h2>Egyenlege:</h2>
+            <h3>
+                <?= $result6; ?> Ft
+            </h3>
         </div>
     </div>
- <form method="POST">
-    <div class="kozos1">
-        <div class="penzfeltoltes">
-            <h1>Pénzfeltöltés / Pénzkifizetés:</h1>
-            <div class="grid-container-penzfeltoltes">
-               
+    <form method="POST">
+        <div class="kozos1">
+            <div class="penzfeltoltes">
+                <h1>Pénzfeltöltés / Pénzkifizetés:</h1>
+                <div class="grid-container-penzfeltoltes">
+
                     <div class="col1-penzfeltoltes">
                         <label for="kartyaszam">Adja meg a kártyaszámot:</label>
                         <input type="text" name="kartyaszam" id="kartyaszam" required>
@@ -71,9 +74,9 @@ if (isset($_POST['penzki'])) {
                         <label for="osszeg">Adja meg a kívánt összeget:(Ft)</label>
                         <input type="text" name="osszeg" id="osszeg" required>
                     </div>
-                </form>
-            </div>
-        </div>
+    </form>
+    </div>
+    </div>
     </div>
 
 
