@@ -1,45 +1,46 @@
 <?php include('header.php');
- 
+
 
 if (isset($_POST['kuld'])) {
- $sql1 = "SELECT meccs_id, lefutott_e FROM meccs_eredmeny ORDER BY meccs_id DESC LIMIT 1";
-  $result1 = $db->RunSQL($sql1);
-  $result1 = $result1->fetch_assoc();
-  if ($result1['lefutott_e'] == 0) {
-  $osszeg = $_POST['betAmount'];
-  $fid = $_POST['fid'];
-  $sql = "  INSERT INTO `fogadas`(`felhasz_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`) VALUES ('".$_SESSION['felhasz_id']."','$osszeg','0','".$result1['meccs_id']."','$fid')";
-  $result = $db->RunSQL($sql);
-  $sql3 = "UPDATE penztarca SET egyenleg =  egyenleg - $osszeg WHERE felhasz_id = '".$_SESSION['felhasz_id']."';";
-  $result3 = $db->RunSQL($sql3);
-  header('Location: fogadasok.php');
-  }else {
-    echo 'valami nem jó!';
+  if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_SESSION['felhasz_id']) : $_SESSION['felhasz_id'] = "") {
+    $sql1 = "SELECT meccs_id, lefutott_e FROM meccs_eredmeny ORDER BY meccs_id DESC LIMIT 1";
+    $result1 = $db->RunSQL($sql1);
+    $result1 = $result1->fetch_assoc();
+    if ($result1['lefutott_e'] == 0) {
+      $osszeg = $_POST['betAmount'];
+      $fid = $_POST['fid'];
+      $sql6 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " . $_SESSION['felhasz_id'] . ";";
+      $result6 = $db->RunSQL($sql6);
+      $egyenleg = $result6->fetch_assoc()['egyenleg'];
+      if ($osszeg <= $egyenleg && $osszeg >= 50) {
+        $sql = "  INSERT INTO `fogadas`(`felhasz_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`) VALUES ('" . $_SESSION['felhasz_id'] . "','$osszeg','0','" . $result1['meccs_id'] . "','$fid')";
+        $result = $db->RunSQL($sql);
+        $sql3 = "UPDATE penztarca SET egyenleg =  egyenleg - $osszeg WHERE felhasz_id = '" . $_SESSION['felhasz_id'] . "';";
+        $result3 = $db->RunSQL($sql3);
+        header('Location: fogadasok.php');
+      } else {
+        echo 'Nincs elegendő pénze megrakni a fogadást!';
+      }
+    } else {
+      echo 'valami nem jó!';
+    }
+  } else {
+    echo 'Nem vagy bejelentkezve!';
   }
-  
 }
 ?>
-<script>
-  setInterval(function() {
-    for (let index = 1; index < 7; index++) {
-      const buffer = $("#refresh" + index);
-      buffer.empty();
-      buffer.load("content/content"+index+".php");
-    }
 
-  }, 10000);
-</script>
 <form method="post">
-<div id="betModal" class="modal">
-  <div class="modal-content">
-    <h2 id="betModalTitle"></h2>
-    <p>Válassz összeget:</p>
-    <input type="number" id="betAmount" name="betAmount" min="1" max="1000">
-    <input type="hidden" id="fid" name="fid">
-    <button name="kuld" id="kuld" >Küldés</button>
-    <button id="closebtn">&times;</button>
+  <div id="betModal" class="modal">
+    <div class="modal-content">
+      <h2 id="betModalTitle"></h2>
+      <p>Válassz összeget:</p>
+      <input type="number" id="betAmount" name="betAmount" min="50" max="10000000">
+      <input type="hidden" id="fid" name="fid">
+      <button name="kuld" id="kuld">Küldés</button>
+      <button id="closebtn">&times;</button>
+    </div>
   </div>
-</div>
 </form>
 
 <main>
@@ -48,7 +49,7 @@ if (isset($_POST['kuld'])) {
     <div class="meccsek" id="meccsek">
       <div class="grid-container">
         <div class="col1" id="refresh1">
-   
+
         </div>
         <div class="col2" id="refresh2">
           <h1>Meccs adatai mindjárt frissülnek.</h1>
@@ -59,8 +60,8 @@ if (isset($_POST['kuld'])) {
       </div>
     </div>
     <div class="meccsek2">
-      <h1>Szorzók</h1> 
-       <h2>Végeredmény:</h2>
+      <h1>Szorzók</h1>
+      <h2>Végeredmény:</h2>
       <div class="grid-container-szorzok">
         <div class="col1-szorzok">
 
@@ -68,11 +69,11 @@ if (isset($_POST['kuld'])) {
 
           </span>
         </div>
-         
-        <div class="col2-szorzok">       
+
+        <div class="col2-szorzok">
           <span id="refresh5">
           </span>
-        
+
         </div>
 
         <div class="col3-szorzok">
@@ -86,4 +87,19 @@ if (isset($_POST['kuld'])) {
   <script src="proba.js"></script>
 </main>
 
-<?php include('footer.php');?>
+<?php include('footer.php'); ?>
+<script>
+  function kell() {
+    console.log('neger');
+    for (let index = 1; index < 7; index++) {
+      const buffer = $("#refresh" + index);
+      buffer.empty();
+      buffer.load("content/content" + index + ".php");
+
+    }
+
+  }
+  kell();
+
+  setInterval(kell, 10000);
+</script>

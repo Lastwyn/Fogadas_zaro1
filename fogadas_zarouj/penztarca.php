@@ -1,4 +1,7 @@
 <?php include('header.php');
+$sql6 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " .$_SESSION['felhasz_id'].";";
+$result6 = $db->RunSQL($sql6);
+$result6 = $result6->fetch_assoc()['egyenleg'];
 
 if (isset($_POST['penzbe'])) {
     $sql2 = "SELECT penztarca_id FROM penztarca WHERE penztarca_id = " .$_SESSION['penztarca_id'] .";";
@@ -41,12 +44,10 @@ if (isset($_POST['penzki'])) {
             <?php endif; ?>
         </div>
         <div class="col2-adat">
-            <h2>Egyenlege:</h2>
-            <?php if (isset($_SESSION['egyenleg'])): ?>
+            <h2>Egyenlege:</h2>        
                 <h3>
-                    <?= $_SESSION['egyenleg']; ?> Ft
+                    <?= $result6; ?> Ft
                 </h3>
-            <?php endif; ?>
         </div>
     </div>
  <form method="POST">
