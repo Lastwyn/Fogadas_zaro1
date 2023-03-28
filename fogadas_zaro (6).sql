@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 26. 19:38
+-- Létrehozás ideje: 2023. Már 28. 13:24
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.10
 
@@ -66,7 +66,10 @@ INSERT INTO `be_ki_fizetes` (`id`, `penztarca_id`, `datum`, `kartyaszam`, `ossze
 (21, 6, '2023-03-26', 21332, 2081, 'az'),
 (22, 6, '2023-03-26', 21332, 3000, 'az'),
 (23, 6, '2023-03-26', 21332, 2, 'az'),
-(24, 6, '2023-03-26', 21332, 10000, 'az');
+(24, 6, '2023-03-26', 21332, 10000, 'az'),
+(25, 6, '2023-03-27', 21332, 1000, 'az'),
+(26, 6, '2023-03-28', 12312313123, 20000, 'az'),
+(27, 6, '2023-03-28', 21332, 5000, 'az');
 
 -- --------------------------------------------------------
 
@@ -108,35 +111,62 @@ CREATE TABLE `fogadas` (
   `profit_buko` double NOT NULL,
   `meccs_id` int(11) NOT NULL,
   `fogadasi_szam` int(11) NOT NULL,
-  `eredmeny` varchar(255) NOT NULL
+  `eredmeny` varchar(255) NOT NULL,
+  `odds` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `fogadas`
 --
 
-INSERT INTO `fogadas` (`felhasz_id`, `fog_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`, `eredmeny`) VALUES
-(4, 5, 200, 0, 58, 1, 'Vesztes'),
-(5, 9, 100, 0, 59, 1, 'Vesztes'),
-(5, 10, 3, 0, 59, 1, 'Vesztes'),
-(5, 11, 200, 0, 60, 1, 'Vesztes'),
-(5, 13, 1881, 0, 64, 1, 'Vesztes'),
-(5, 14, 3000, 0, 64, 1, 'Vesztes'),
-(5, 15, 300, 0, 64, 2, 'Vesztes'),
-(5, 16, 1, 0, 64, 1, 'Vesztes'),
-(5, 17, 50, 0, 64, 1, 'Vesztes'),
-(5, 18, 51, 0, 64, 1, 'Vesztes'),
-(5, 20, 100, 0, 64, 1, ''),
-(5, 21, 100, 0, 64, 1, ''),
-(5, 22, 200, 0, 65, 1, ''),
-(5, 23, 200, 0, 66, 1, ''),
-(5, 24, 200, 400, 67, 2, 'Nyertes'),
-(5, 25, 200, -200, 69, 2, 'Vesztes'),
-(5, 26, 1000, -1000, 70, 2, 'Vesztes'),
-(5, 27, 200, 400, 71, 2, 'Nyertes'),
-(5, 28, 200, -200, 72, 3, 'Vesztes'),
-(5, 29, 5000, -5000, 73, 3, 'Vesztes'),
-(5, 30, 5000, -5000, 74, 3, 'Vesztes');
+INSERT INTO `fogadas` (`felhasz_id`, `fog_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`, `eredmeny`, `odds`) VALUES
+(4, 5, 200, 0, 58, 1, 'Vesztes', 0),
+(5, 9, 100, 0, 59, 1, 'Vesztes', 0),
+(5, 10, 3, 0, 59, 1, 'Vesztes', 0),
+(5, 11, 200, 0, 60, 1, 'Vesztes', 0),
+(5, 13, 1881, 0, 64, 1, 'Vesztes', 0),
+(5, 14, 3000, 0, 64, 1, 'Vesztes', 0),
+(5, 15, 300, 0, 64, 2, 'Vesztes', 0),
+(5, 16, 1, 0, 64, 1, 'Vesztes', 0),
+(5, 17, 50, 0, 64, 1, 'Vesztes', 0),
+(5, 18, 51, 0, 64, 1, 'Vesztes', 0),
+(5, 20, 100, 0, 64, 1, '', 0),
+(5, 21, 100, 0, 64, 1, '', 0),
+(5, 22, 200, 0, 65, 1, '', 0),
+(5, 23, 200, 0, 66, 1, '', 0),
+(5, 24, 200, 400, 67, 2, 'Nyertes', 0),
+(5, 25, 200, -200, 69, 2, 'Vesztes', 0),
+(5, 26, 1000, -1000, 70, 2, 'Vesztes', 0),
+(5, 27, 200, 400, 71, 2, 'Nyertes', 0),
+(5, 28, 200, -200, 72, 3, 'Vesztes', 0),
+(5, 29, 5000, -5000, 73, 3, 'Vesztes', 0),
+(5, 30, 5000, -5000, 74, 3, 'Vesztes', 0),
+(5, 31, 2, 0, 75, 2, '', 0),
+(5, 32, 200, 0, 75, 2, '', 0),
+(5, 33, 200, 0, 75, 1, '', 0),
+(5, 34, 200, 0, 75, 1, '', 0),
+(5, 35, 398, -398, 76, 2, 'Vesztes', 0),
+(5, 36, 2000, -2000, 78, 2, 'Vesztes', 0),
+(5, 37, 8000, -8000, 79, 3, 'Vesztes', 0),
+(5, 38, 1000, 2000, 80, 1, 'Nyertes', 0),
+(5, 39, 1000, -1000, 81, 1, 'Vesztes', 0),
+(5, 40, 5000, 10000, 82, 2, 'Nyertes', 0),
+(5, 41, 5000, -5000, 83, 3, 'Vesztes', 0),
+(5, 42, 5000, -5000, 96, 3, 'Vesztes', 0),
+(5, 43, 5000, -5000, 97, 2, 'Vesztes', 0),
+(5, 44, 1000, 2000, 100, 1, 'Nyertes', 0),
+(5, 45, 1000, -1000, 100, 3, 'Vesztes', 0),
+(5, 46, 1000, -1000, 107, 1, 'Vesztes', 0),
+(5, 47, 1000, 2000, 115, 1, 'Nyertes', 0),
+(5, 48, 1000, 2000, 116, 2, 'Nyertes', 0),
+(5, 49, 1000, 2000, 117, 2, 'Nyertes', 0),
+(5, 50, 1000, -1000, 119, 2, 'Vesztes', 0),
+(5, 51, 100, -100, 121, 1, 'Vesztes', 0),
+(5, 52, 100, -100, 125, 2, 'Vesztes', 0),
+(5, 53, 1000, -1000, 133, 2, 'Vesztes', 0),
+(5, 54, 1000, 2000, 134, 2, 'Nyertes', 2.5),
+(5, 55, 1000, -1000, 137, 1, 'Vesztes', 2),
+(5, 56, 2000, -2000, 140, 1, 'Vesztes', 2);
 
 -- --------------------------------------------------------
 
@@ -155,9 +185,9 @@ CREATE TABLE `fogadasi_lehetoseg` (
 --
 
 INSERT INTO `fogadasi_lehetoseg` (`fogadasi_szam`, `fogadas_neve`, `szorzo`) VALUES
-(1, 'Hazai', 2.25),
-(2, 'Vendég', 2.16),
-(3, 'Döntetlen', 2.94);
+(1, 'Hazai', 5),
+(2, 'Vendég', 1.5),
+(3, 'Döntetlen', 4.33);
 
 -- --------------------------------------------------------
 
@@ -291,7 +321,7 @@ INSERT INTO `meccs_eredmeny` (`meccs_id`, `eredmeny`, `gol_szerzo`, `golszam`, `
 (56, '0-4', 'Attila Fiola,Roland Sallai,Dominik Szoboszlai,Ádám Lang,', 4, 2, 3, 1),
 (57, '2-0', 'Ilkay Gundogan,Toni Kroos,', 2, 1, 3, 1),
 (58, '0-2', 'Matthias Ginter,Matthias Ginter,', 2, 2, 1, 1),
-(59, '0-0', '', 0, 4, 3, 0),
+(59, '0-0', '', 0, 4, 3, 1),
 (60, '2-5', 'N\'Golo Kante,Adrien Rabiot,Robin Gosens,Joshua Kimmich,Robin Gosens,Ilkay Gundogan,Joshua Kimmich,', 7, 2, 1, 1),
 (61, '0-8', 'Toni Kroos,Toni Kroos,Matthias Ginter,Ilkay Gundogan,Joshua Kimmich,Joshua Kimmich,Kai Havertz,Antonio Rudiger,', 8, 2, 1, 1),
 (62, '3-1', 'Marco Verratti,Nicolo Barella,Leonardo Bonucci,Benjamin Pavard,', 4, 4, 2, 1),
@@ -307,7 +337,99 @@ INSERT INTO `meccs_eredmeny` (`meccs_id`, `eredmeny`, `gol_szerzo`, `golszam`, `
 (72, '3-0', 'Adrien Rabiot,Benjamin Pavard,N\'Golo Kante,', 3, 2, 1, 1),
 (73, '0-4', 'Leonardo Bonucci,Emerson Palmieri,Jorginho,Nicolo Barella,', 4, 2, 4, 1),
 (74, '1-0', 'Ilkay Gundogan,', 1, 1, 4, 1),
-(75, '0-0', '', 0, 4, 3, 0);
+(75, '0-1', '', 1, 4, 3, 1),
+(76, '1-0', 'Giorgio Chiellini,', 1, 4, 3, 1),
+(77, '6-1', 'N\'Golo Kante,N\'Golo Kante,N\'Golo Kante,N\'Golo Kante,Paul Pogba,Lucas Hernandez,Ádám Szalai,', 7, 2, 3, 1),
+(78, '5-0', 'Joshua Kimmich,Kai Havertz,Ilkay Gundogan,Matthias Ginter,Toni Kroos,', 5, 1, 2, 1),
+(79, '0-7', 'Marco Verratti,Emerson Palmieri,Marco Verratti,Marco Verratti,Nicolo Barella,Jorginho,Marco Verratti,', 7, 3, 4, 1),
+(80, '5-2', 'Jorginho,Marco Verratti,Marco Verratti,Jorginho,Leonardo Bonucci,Benjamin Pavard,Paul Pogba,', 7, 4, 2, 1),
+(81, '4-4', 'Jorginho,Jorginho,Nicolo Barella,Giorgio Chiellini,Dominik Szoboszlai,László Kleinheisler,Ádám Szalai,Dominik Szoboszlai,', 8, 4, 3, 1),
+(82, '0-7', 'Ádám Szalai,Dávid Sigér,Ákos Kecskés,Dominik Szoboszlai,Roland Sallai,Dominik Szoboszlai,Attila Fiola,', 7, 2, 3, 1),
+(83, '2-4', 'Dominik Szoboszlai,Willi Orbán,Nicolo Barella,Nicolo Barella,Giovanni Di Lorenzo,Leonardo Bonucci,', 6, 3, 4, 1),
+(84, '1-1', 'Kai Havertz,Benjamin Pavard,', 2, 1, 2, 1),
+(85, '7-1', 'Antonio Rudiger,Toni Kroos,Kai Havertz,Kai Havertz,Kai Havertz,Kai Havertz,Toni Kroos,Dominik Szoboszlai,', 8, 1, 3, 1),
+(86, '0-2', 'Leonardo Bonucci,Marco Verratti,', 2, 3, 4, 1),
+(87, '2-0', 'Kai Havertz,Kai Havertz,', 2, 1, 3, 1),
+(88, '0-1', 'Dávid Sigér,', 1, 2, 3, 1),
+(89, '4-1', 'Dominik Szoboszlai,Dominik Szoboszlai,Endre Botka,Ádám Lang,Lucas Hernandez,', 5, 3, 2, 1),
+(90, '0-0', '', 0, 2, 1, 1),
+(91, '3-5', 'Lucas Hernandez,Paul Pogba,Raphael Varane,Ilkay Gundogan,Ilkay Gundogan,Robin Gosens,Ilkay Gundogan,Ilkay Gundogan,', 8, 2, 1, 1),
+(92, '2-1', 'Giorgio Chiellini,Giorgio Chiellini,Toni Kroos,', 3, 4, 1, 1),
+(93, '3-1', 'Ilkay Gundogan,Ilkay Gundogan,Toni Kroos,Paul Pogba,', 4, 1, 2, 1),
+(94, '3-3', 'Paul Pogba,N\'Golo Kante,N\'Golo Kante,Nicolo Barella,Emerson Palmieri,Marco Verratti,', 6, 2, 4, 1),
+(95, '4-3', 'Jorginho,Leonardo Bonucci,Leonardo Bonucci,Jorginho,Dominik Szoboszlai,Dominik Szoboszlai,Dávid Sigér,', 7, 4, 3, 1),
+(96, '1-4', 'Kai Havertz,Nicolo Barella,Giovanni Di Lorenzo,Leonardo Bonucci,Nicolo Barella,', 5, 1, 4, 1),
+(97, '6-0', 'Leonardo Bonucci,Jorginho,Giorgio Chiellini,Giorgio Chiellini,Nicolo Barella,Marco Verratti,', 6, 4, 1, 1),
+(98, '2-1', 'Kai Havertz,Joshua Kimmich,Presnel Kimpembe,', 3, 1, 2, 1),
+(99, '4-1', 'Marco Verratti,Leonardo Bonucci,Marco Verratti,Marco Verratti,Dominik Szoboszlai,', 5, 4, 3, 1),
+(100, '1-0', 'Jorginho,', 1, 4, 3, 1),
+(101, '5-0', 'Toni Kroos,Kai Havertz,Robin Gosens,Toni Kroos,Toni Kroos,', 5, 1, 3, 1),
+(102, '1-7', 'N\'Golo Kante,Kai Havertz,Ilkay Gundogan,Joshua Kimmich,Ilkay Gundogan,Kai Havertz,Antonio Rudiger,Joshua Kimmich,', 8, 2, 1, 1),
+(103, '1-1', 'Ádám Szalai,Paul Pogba,', 2, 3, 2, 1),
+(104, '3-2', 'Ádám Szalai,Roland Sallai,Dávid Sigér,Presnel Kimpembe,Adrien Rabiot,', 5, 3, 2, 1),
+(105, '1-1', 'Matthias Ginter,Adrien Rabiot,', 2, 1, 2, 1),
+(106, '2-2', 'N\'Golo Kante,N\'Golo Kante,Giovanni Di Lorenzo,Leonardo Bonucci,', 4, 2, 4, 1),
+(107, '3-3', 'Leonardo Bonucci,Emerson Palmieri,Marco Verratti,Ádám Szalai,Ádám Szalai,Ádám Szalai,', 6, 4, 3, 1),
+(108, '1-1', 'Benjamin Pavard,Kai Havertz,', 2, 2, 1, 1),
+(109, '4-4', 'Matthias Ginter,Antonio Rudiger,Toni Kroos,Joshua Kimmich,Marco Verratti,Nicolo Barella,Giovanni Di Lorenzo,Marco Verratti,', 8, 1, 4, 1),
+(110, '0-0', '', 0, 2, 3, 1),
+(111, '2-0', 'Dávid Sigér,Dominik Szoboszlai,', 2, 3, 4, 1),
+(112, '1-1', 'Dominik Szoboszlai,Toni Kroos,', 2, 3, 1, 1),
+(113, '2-2', 'Jorginho,Giovanni Di Lorenzo,Adrien Rabiot,N\'Golo Kante,', 4, 4, 2, 1),
+(114, '0-3', 'N\'Golo Kante,Presnel Kimpembe,Raphael Varane,', 3, 1, 2, 1),
+(115, '2-0', 'Leonardo Bonucci,Jorginho,', 2, 4, 1, 1),
+(116, '0-2', 'Jorginho,Nicolo Barella,', 2, 1, 4, 1),
+(117, '3-4', 'Kai Havertz,Ilkay Gundogan,Joshua Kimmich,Paul Pogba,Paul Pogba,N\'Golo Kante,Benjamin Pavard,', 7, 1, 2, 1),
+(118, '0-7', 'Dávid Sigér,Ákos Kecskés,Ákos Kecskés,Dávid Sigér,Ákos Kecskés,Roland Sallai,László Kleinheisler,', 7, 1, 3, 1),
+(119, '3-3', 'Roland Sallai,Dominik Szoboszlai,Dávid Sigér,Jorginho,Nicolo Barella,Marco Verratti,', 6, 3, 4, 1),
+(120, '3-3', 'Ilkay Gundogan,Ilkay Gundogan,Kai Havertz,Adrien Rabiot,N\'Golo Kante,N\'Golo Kante,', 6, 1, 2, 1),
+(121, '4-4', 'Antonio Rudiger,Matthias Ginter,Robin Gosens,Matthias Ginter,Dominik Szoboszlai,Dávid Sigér,Attila Fiola,Ákos Kecskés,', 8, 1, 3, 1),
+(122, '3-0', 'Antonio Rudiger,Joshua Kimmich,Kai Havertz,', 3, 1, 3, 1),
+(123, '2-6', 'Toni Kroos,Matthias Ginter,Raphael Varane,Lucas Hernandez,Adrien Rabiot,Adrien Rabiot,Paul Pogba,Adrien Rabiot,', 8, 1, 2, 1),
+(124, '4-2', 'Ádám Szalai,Roland Sallai,Dominik Szoboszlai,Ádám Szalai,Toni Kroos,Antonio Rudiger,', 6, 3, 1, 1),
+(125, '2-2', 'Kai Havertz,Kai Havertz,Marco Verratti,Leonardo Bonucci,', 4, 1, 4, 1),
+(126, '1-1', 'László Kleinheisler,Toni Kroos,', 2, 3, 1, 1),
+(127, '0-4', 'Robin Gosens,Toni Kroos,Robin Gosens,Joshua Kimmich,', 4, 4, 1, 1),
+(128, '2-3', 'Ádám Szalai,Dávid Sigér,Jorginho,Nicolo Barella,Giovanni Di Lorenzo,', 5, 3, 4, 1),
+(129, '0-0', '', 0, 3, 2, 0),
+(130, '3-1', 'Toni Kroos,Kai Havertz,Kai Havertz,Jorginho,', 4, 1, 4, 1),
+(131, '1-1', 'Raphael Varane,Giorgio Chiellini,', 2, 2, 4, 1),
+(132, '3-2', 'Paul Pogba,Adrien Rabiot,Paul Pogba,Nicolo Barella,Nicolo Barella,', 5, 2, 4, 1),
+(133, '6-0', 'Ádám Szalai,Dominik Szoboszlai,Ádám Szalai,Endre Botka,Attila Fiola,Ádám Szalai,', 6, 3, 1, 1),
+(134, '0-1', 'Nicolo Barella,', 1, 2, 4, 1),
+(135, '4-0', 'N\'Golo Kante,N\'Golo Kante,Paul Pogba,N\'Golo Kante,', 4, 2, 4, 1),
+(136, '0-0', '', 0, 2, 4, 1),
+(137, '1-1', 'Nicolo Barella,Dominik Szoboszlai,', 2, 4, 3, 1),
+(138, '4-4', 'Benjamin Pavard,Benjamin Pavard,Benjamin Pavard,Presnel Kimpembe,Toni Kroos,Kai Havertz,Ilkay Gundogan,Toni Kroos,', 8, 2, 1, 1),
+(139, '0-7', 'Paul Pogba,Adrien Rabiot,Lucas Hernandez,Paul Pogba,Benjamin Pavard,Presnel Kimpembe,N\'Golo Kante,', 7, 4, 2, 1),
+(140, '0-1', 'Paul Pogba,', 1, 1, 2, 1),
+(141, '0-2', 'Jorginho,Leonardo Bonucci,', 2, 2, 4, 1),
+(142, '3-1', 'Roland Sallai,Dávid Sigér,Dominik Szoboszlai,Ilkay Gundogan,', 4, 3, 1, 1),
+(143, '5-0', 'Paul Pogba,N\'Golo Kante,Adrien Rabiot,Benjamin Pavard,N\'Golo Kante,', 5, 2, 3, 1),
+(144, '1-1', 'Roland Sallai,Paul Pogba,', 2, 3, 2, 1),
+(145, '2-1', 'N\'Golo Kante,Raphael Varane,Robin Gosens,', 3, 2, 1, 1),
+(146, '6-2', 'Paul Pogba,Paul Pogba,Raphael Varane,Lucas Hernandez,N\'Golo Kante,N\'Golo Kante,Roland Sallai,Dávid Sigér,', 8, 2, 3, 1),
+(147, '7-0', 'Emerson Palmieri,Marco Verratti,Marco Verratti,Jorginho,Emerson Palmieri,Giorgio Chiellini,Nicolo Barella,', 7, 4, 1, 1),
+(148, '4-4', 'Antonio Rudiger,Antonio Rudiger,Robin Gosens,Toni Kroos,Paul Pogba,Adrien Rabiot,Lucas Hernandez,N\'Golo Kante,', 8, 1, 2, 1),
+(149, '2-2', 'Adrien Rabiot,Lucas Hernandez,Jorginho,Nicolo Barella,', 4, 2, 4, 1),
+(150, '1-4', 'Ilkay Gundogan,Giovanni Di Lorenzo,Jorginho,Nicolo Barella,Jorginho,', 5, 1, 4, 1),
+(151, '2-4', 'Matthias Ginter,Toni Kroos,Raphael Varane,N\'Golo Kante,Adrien Rabiot,Raphael Varane,', 6, 1, 2, 1),
+(152, '4-4', 'Dávid Sigér,Dávid Sigér,Roland Sallai,Roland Sallai,Lucas Hernandez,Paul Pogba,N\'Golo Kante,Adrien Rabiot,', 8, 3, 2, 1),
+(153, '0-2', 'Adrien Rabiot,Paul Pogba,', 2, 4, 2, 1),
+(154, '1-0', 'Willi Orbán,', 1, 3, 2, 1),
+(155, '3-2', 'Toni Kroos,Kai Havertz,Matthias Ginter,Giovanni Di Lorenzo,Emerson Palmieri,', 5, 1, 4, 1),
+(156, '0-8', 'Dominik Szoboszlai,Ádám Szalai,Ádám Szalai,Dominik Szoboszlai,Dávid Sigér,Ádám Szalai,Ádám Szalai,Roland Sallai,', 8, 2, 3, 1),
+(157, '3-0', 'Marco Verratti,Giorgio Chiellini,Marco Verratti,', 3, 4, 1, 1),
+(158, '2-3', 'Jorginho,Nicolo Barella,László Kleinheisler,Endre Botka,Ádám Szalai,', 5, 4, 3, 1),
+(159, '2-0', 'Giorgio Chiellini,Nicolo Barella,', 2, 4, 2, 1),
+(160, '3-3', 'Toni Kroos,Kai Havertz,Matthias Ginter,Giorgio Chiellini,Marco Verratti,Giovanni Di Lorenzo,', 6, 1, 4, 1),
+(161, '0-1', 'Nicolo Barella,', 1, 1, 4, 1),
+(162, '0-2', 'Giorgio Chiellini,Jorginho,', 2, 2, 4, 1),
+(163, '0-8', 'Jorginho,Jorginho,Nicolo Barella,Nicolo Barella,Emerson Palmieri,Leonardo Bonucci,Jorginho,Marco Verratti,', 8, 2, 4, 1),
+(164, '0-1', 'Marco Verratti,', 1, 1, 4, 1),
+(165, '3-2', 'Marco Verratti,Jorginho,Giovanni Di Lorenzo,N\'Golo Kante,Paul Pogba,', 5, 4, 2, 1),
+(166, '0-5', 'Toni Kroos,Joshua Kimmich,Kai Havertz,Ilkay Gundogan,Robin Gosens,', 5, 2, 1, 1),
+(167, '2-5', 'N\'Golo Kante,Paul Pogba,Dominik Szoboszlai,Roland Sallai,Ádám Szalai,Ádám Szalai,Ákos Kecskés,', 7, 2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -349,7 +471,7 @@ CREATE TABLE `penztarca` (
 INSERT INTO `penztarca` (`felhasz_id`, `penztarca_id`, `egyenleg`) VALUES
 (3, 1, 2000),
 (4, 2, 2420),
-(5, 6, 0);
+(5, 6, 2800);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -418,7 +540,7 @@ ALTER TABLE `penztarca`
 -- AUTO_INCREMENT a táblához `be_ki_fizetes`
 --
 ALTER TABLE `be_ki_fizetes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznaloi_adatok`
@@ -430,7 +552,7 @@ ALTER TABLE `felhasznaloi_adatok`
 -- AUTO_INCREMENT a táblához `fogadas`
 --
 ALTER TABLE `fogadas`
-  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT a táblához `fogadasi_lehetoseg`
@@ -442,7 +564,7 @@ ALTER TABLE `fogadasi_lehetoseg`
 -- AUTO_INCREMENT a táblához `meccs_eredmeny`
 --
 ALTER TABLE `meccs_eredmeny`
-  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT a táblához `nemzetek`

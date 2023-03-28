@@ -31,8 +31,11 @@ $result2 = $db->RunSQL($sql2);
         <nav>
           <ul>
             <li><a href="Foldal.php" class="navbutton">Home</a></li>
+            <?php 
+            if(isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_SESSION['felhasz_id']) : $_SESSION['felhasz_id'] = ""){?>
+          
             <li><a href="fogadasok.php" class="navbutton">Fogadásaim</a></li>
-            
+           <?php   } ?>
             <?php if(isset($_SESSION['felhasz_nev'])) : ?>
             
             <li ><a href="logout.php" role="button" class="navbutton">Kijelentkezés</a></li>

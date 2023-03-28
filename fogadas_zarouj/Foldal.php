@@ -9,11 +9,12 @@ if (isset($_POST['kuld'])) {
     if ($result1['lefutott_e'] == 0) {
       $osszeg = $_POST['betAmount'];
       $fid = $_POST['fid'];
+      $odd = $_POST['odd'];
       $sql6 = "SELECT egyenleg FROM penztarca WHERE felhasz_id = " . $_SESSION['felhasz_id'] . ";";
       $result6 = $db->RunSQL($sql6);
       $egyenleg = $result6->fetch_assoc()['egyenleg'];
       if ($osszeg <= $egyenleg && $osszeg >= 50) {
-        $sql = "  INSERT INTO `fogadas`(`felhasz_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`) VALUES ('" . $_SESSION['felhasz_id'] . "','$osszeg','0','" . $result1['meccs_id'] . "','$fid')";
+        $sql = "INSERT INTO `fogadas`(`felhasz_id`, `fogadasi_osszeg`, `profit_buko`, `meccs_id`, `fogadasi_szam`,odds) VALUES ('" . $_SESSION['felhasz_id'] . "','$osszeg','0','" . $result1['meccs_id'] . "','$fid','$odd')";
         $result = $db->RunSQL($sql);
         $sql3 = "UPDATE penztarca SET egyenleg =  egyenleg - $osszeg WHERE felhasz_id = '" . $_SESSION['felhasz_id'] . "';";
         $result3 = $db->RunSQL($sql3);
@@ -37,6 +38,7 @@ if (isset($_POST['kuld'])) {
       <p>Válassz összeget:</p>
       <input type="number" id="betAmount" name="betAmount" min="50" max="10000000">
       <input type="hidden" id="fid" name="fid">
+      <input type="hidden" id="odd" name="odd">
       <button name="kuld" id="kuld">Küldés</button>
       <button id="closebtn">&times;</button>
     </div>
@@ -90,7 +92,7 @@ if (isset($_POST['kuld'])) {
 <?php include('footer.php'); ?>
 <script>
   function kell() {
-    console.log('neger');
+
     for (let index = 1; index < 7; index++) {
       const buffer = $("#refresh" + index);
       buffer.empty();
