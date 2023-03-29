@@ -9,7 +9,7 @@
     $sql = "SELECT DISTINCT nemzetek.nemzet_nev FROM nemzetek INNER JOIN meccs_eredmeny ON meccs_eredmeny.hazai_id = nemzetek.nemzet_id WHERE nemzetek.nemzet_id = ?";
     $hazainev = $db->RunSQLPrms($sql, "i", $result['hazai_id']);
 
-    $sql3 = "SELECT DISTINCT nemzetek.nemzet_nev FROM nemzetek INNER JOIN meccs_eredmeny ON meccs_eredmeny.hazai_id = nemzetek.nemzet_id WHERE nemzetek.nemzet_id = ?";
+    $sql3 = "SELECT DISTINCT nemzetek.nemzet_nev FROM nemzetek INNER JOIN meccs_eredmeny ON meccs_eredmeny.vendeg_id = nemzetek.nemzet_id WHERE nemzetek.nemzet_id = ?";
     $vendegnev = $db->RunSQLPrms($sql3, "i", $result['vendeg_id']);
 
     $sql4 = "SELECT * FROM `jatekosok` WHERE `nemzet_id` = ?";
