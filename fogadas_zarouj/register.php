@@ -38,32 +38,32 @@ if (isset($_POST['regisztracio'])) {
         <div class="register-bodycard">
             <form method="POST">
                 <div>
-                    <input type="text" name="felhasznalo_nev" id="felhasznalo_nev" placeholder="Felhasználónév" required>
+                    <input  type="text" name="felhasznalo_nev" id="input" placeholder="Felhasználónév" required>
                 </div>
                 <div>
-                    <input type="email" name="email" id="email" placeholder="Email-cím" required>
+                    <input type="email" name="email" id="input" placeholder="Email-cím" required>
                 </div>
                 <div>
-                    <input type="password" name="jelszo" id="jelszo" placeholder="Jelszó" required>
+                    <input type="password" name="jelszo" id="input" placeholder="Jelszó" required>
                 </div>
                 <div>
-                    <input type="text" name="okmany" id="okmany" placeholder="Azonosító szám" required>
+                    <input type="text" name="okmany" id="input" placeholder="Azonosító szám" required>
                 </div>
                 <div>
                     <label for="nemradio">
-                        <input type="radio" name="nem" id="nem" value="Férfi" required>
+                        <input type="radio" name="nem" id="input2" value="Férfi" required>
                         Férfi
                     </label>
                     <label for="nemradio">
-                        <input type="radio" name="nem" id="nem" value="Nő" required>
+                        <input type="radio" name="nem" id="input2" value="Nő" required>
                         Nő
                     </label>
                 </div>
                 <div>
-                    <input type="text" name="orszag" id="orszag" placeholder="Ország">
+                    <input type="text" name="orszag" id="input" placeholder="Ország">
                 </div>
                 <div>
-                    <button id="regisztracio" name="regisztracio">Regisztráció</button>
+                    <button id="input_button" name="regisztracio">Regisztráció</button>
                 </div>
             </form>
         </div>

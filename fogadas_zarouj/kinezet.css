@@ -260,6 +260,7 @@ footer {
   color: #ccc;
   padding: 20px;
   text-align: center;
+ 
 
 }
 
@@ -319,10 +320,30 @@ footer {
 
 /*#region register*/
 .register-bodycard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+ display: flex;
+ justify-content: center;
+ height: 80vh;
+ align-items: center;
+border: 1px solid whitesmoke;
+width: 30vw;
+margin: 0 auto 0 auto;
 }
-
+#input{
+  width: 300px;
+ border: 1px solid white;
+  padding: 15px;
+  border-radius: 3px;
+  margin: 0 0 2% 0;
+  background-color: #332d2d;
+  color: white;
+}
+#input_button{
+  background-color: #332d2d;
+  color: white;
+  padding: 15px;
+  border-radius: 3px;
+  text-align: center; 
+  width: 17vw;
+  margin: 0 auto 0 auto;
+}
 /*#endregion register*/

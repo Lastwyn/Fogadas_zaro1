@@ -91,17 +91,18 @@ if (isset($_POST['kuld'])) {
 
 <?php include('footer.php'); ?>
 <script>
-  function kell() {
-
+  function refresh() {
     for (let index = 1; index < 7; index++) {
-      const buffer = $("#refresh" + index);
-      buffer.empty();
-      buffer.load("content/content" + index + ".php");
-
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+        document.getElementById("refresh" + index).innerHTML = this.responseText;
+      }
+      xhttp.open("GET", "content/content" + index + ".php");
+      xhttp.send();
     }
-
   }
-  kell();
-
-  setInterval(kell, 10000);
+  refresh();
+  setInterval(function () {
+    refresh();
+  }, 500);
 </script>
