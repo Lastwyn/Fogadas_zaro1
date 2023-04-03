@@ -19,8 +19,8 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
 <html lang="hu">
 
 <head>
-  <title></title>
-  <meta charset="UTF-8">
+  <title>Tutifix</title>
+  <link rel = "icon" href = "betting.ico"  type = "image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="kinezet.css?<?php echo time(); ?>" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

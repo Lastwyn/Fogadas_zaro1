@@ -62,9 +62,7 @@ if (isset($_POST['kuld'])) {
       </div>
     </div>
     <div class="meccsek2">
-      <h1>Szorzók</h1>
-      <h2>Végeredmény:</h2>
-      
+      <h1>Szorzók</h1>    
       <div class="grid-container-szorzok">
         <div class="col1-szorzok">
 
@@ -78,7 +76,6 @@ if (isset($_POST['kuld'])) {
           </span>
 
         </div>
-        <h2>Gólok száma:</h2>
         <div class="col3-szorzok">
           <span id="refresh6">
 

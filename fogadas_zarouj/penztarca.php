@@ -61,18 +61,18 @@ if (isset($_POST['penzki'])) {
 
                     <div class="col1-penzfeltoltes">
                         <label for="kartyaszam">Adja meg a kártyaszámot:</label>
-                        <input type="text" name="kartyaszam" id="kartyaszam" required>
+                        <input type="text" name="kartyaszam" id="inputppenz" required>
                     </div>
                     <div class="col2-penzfeltoltes">
                         <label for="kartyat">Adja meg a kártyatulajdonos nevét:</label>
-                        <input type="text" name="kartyat" id="kartyat" required>
+                        <input type="text" name="kartyat" id="inputppenz" required>
                         <br>
-                        <button class="button" id="penzbe" name="penzbe">Pénzfeltöltés</button>
-                        <button class="button" id="penzki" name="penzki">Pénzkifizetés</button>
+                        <button class="button" id="inputppenzbutton" name="penzbe">Pénzfeltöltés</button>
+                        <button class="button" id="inputppenzbutton" name="penzki">Pénzkifizetés</button>
                     </div>
                     <div class="col3-penzfeltoltes">
                         <label for="osszeg">Adja meg a kívánt összeget:(Ft)</label>
-                        <input type="text" name="osszeg" id="osszeg" required>
+                        <input type="text" name="osszeg" id="inputppenz" required>
                     </div>
     </form>
     </div>
