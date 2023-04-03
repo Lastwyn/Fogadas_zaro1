@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-if(isset($_POST['bejelentkezes'])){
+if (isset($_POST['bejelentkezes'])) {
     $email = $_POST['email'];
     $password = $_POST['jelszo'];
 
@@ -15,28 +15,34 @@ if(isset($_POST['bejelentkezes'])){
         $_SESSION['penztarca_id'] = $felhasznalo['penztarca_id'];
         header('Location: Foldal.php');
     } else {
-        echo 'Valami szar!'; 
+        echo 'Valami szar!';
     }
-    
+
 }
 ?>
 <div class="row">
     <main>
+
         <div class="login-bodycard">
-            <form method="POST">
-                <div>
-                    <input type="email" name="email" id="email" placeholder="Email-cím" required>
-                </div>
-                <div>
-                    <input type="password" name="jelszo" id="jelszo" placeholder="Jelszó" required>
-                </div>
-                <div>
-                    <a href="resetpassword.php">Jelszó visszaállítás</a>
-                </div>
-                <div>
-                    <button id="bejelentkezes" name="bejelentkezes">Bejelentkezés</button>
-                </div>
-            </form>
+            <div>
+                <h1 class="eltolas">Bejelentkezés</h1>
+            </div>
+            <div>
+                <form method="POST">
+                    <div class="login-in">
+                        <input type="email" name="email" id="login-input" placeholder="Email-cím" required>
+                    </div>
+                    <div class="login-in">
+                        <input type="password" name="jelszo" id="login-input" placeholder="Jelszó" required>
+                    </div>
+                    <div class="login-in">
+                        <a href="resetpassword.php">Jelszó visszaállítás</a>
+                    </div>
+                    <div class="login-in">
+                        <button id="input_button2" name="bejelentkezes">Bejelentkezés</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 </div>

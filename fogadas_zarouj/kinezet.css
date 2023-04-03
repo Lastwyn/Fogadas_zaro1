@@ -318,32 +318,84 @@ footer {
 
 /*#endregion fogad*/
 
-/*#region register*/
+/*#region registerandlogin*/
 .register-bodycard {
  display: flex;
  justify-content: center;
  height: 80vh;
  align-items: center;
-border: 1px solid whitesmoke;
-width: 30vw;
-margin: 0 auto 0 auto;
+
+width: 50%;
+margin: 2% auto 2% auto;
+
 }
+.register_in{
+  margin: 2% auto 2% auto;
+}
+p,a{
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color: #24c6dc;
+}
+
+
 #input{
-  width: 300px;
- border: 1px solid white;
+  width: 100%;
+ border: 1px solid #dadbde;
   padding: 15px;
-  border-radius: 3px;
+  border-radius: 10px;
   margin: 0 0 2% 0;
   background-color: #332d2d;
   color: white;
 }
 #input_button{
-  background-color: #332d2d;
+  background-color: #24c6dc;
   color: white;
   padding: 15px;
-  border-radius: 3px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
   text-align: center; 
-  width: 17vw;
+  width: 110%;
+  margin: 0 auto 0 auto;
+
+}
+.login-bodycard{
+  display: flex;
+  justify-content: space-around;
+  height: 80vh;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto 15px auto;
+}
+.eltolas{
+  height: 12vh;
+}
+.login-in{
+  margin: 2% auto 2% auto;
+  
+}
+#login-input{
+  width: 100%;
+  border: 1px solid #dadbde;
+   padding: 15px;
+   border-radius: 10px;
+   margin: 0 0 2% 0;
+   background-color: #332d2d;
+   color: white;
+}
+#input_button2{
+  background-color: #24c6dc;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  text-align: center; 
+  width: 110%;
   margin: 0 auto 0 auto;
 }
 /*#endregion register*/

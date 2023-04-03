@@ -37,19 +37,24 @@ if (isset($_POST['regisztracio'])) {
     <main>
         <div class="register-bodycard">
             <form method="POST">
-                <div>
+                <div class="register_in">
+                    <label for="felhasznalo_nev" id="label">Felhasználó név:</label>
                     <input  type="text" name="felhasznalo_nev" id="input" placeholder="Felhasználónév" required>
                 </div>
-                <div>
+                <div class="register_in">
+                <label for="email" id="label">Email-cím:</label>
                     <input type="email" name="email" id="input" placeholder="Email-cím" required>
                 </div>
-                <div>
+                <div class="register_in">
+                <label for="jelszo" id="label">Jelszó:</label>
                     <input type="password" name="jelszo" id="input" placeholder="Jelszó" required>
                 </div>
-                <div>
+                <div class="register_in">
+                <label for="okmany" id="label">Okmány Száma:</label>
                     <input type="text" name="okmany" id="input" placeholder="Azonosító szám" required>
                 </div>
-                <div>
+                <div class="register_in">
+                <label for="nem" id="label">Nemed:</label>
                     <label for="nemradio">
                         <input type="radio" name="nem" id="input2" value="Férfi" required>
                         Férfi
@@ -59,11 +64,15 @@ if (isset($_POST['regisztracio'])) {
                         Nő
                     </label>
                 </div>
-                <div>
+                <div class="register_in">
+                <label for="orszag" id="label">Ország:</label>
                     <input type="text" name="orszag" id="input" placeholder="Ország">
                 </div>
-                <div>
+                <div class="register_in">
                     <button id="input_button" name="regisztracio">Regisztráció</button>
+                </div>
+                <div class="register_in">
+                   <p>Van már van fiókod? <a href="login.php">Jelenzkezz be!</a></p>
                 </div>
             </form>
         </div>
