@@ -8,6 +8,10 @@ body {
 }
 .kozep{
   text-align: center;
+
+}
+.hr{
+  height: 50%;
 }
 .table {
   border-collapse: collapse;
@@ -440,11 +444,11 @@ a{
 
 #input{
   width: 100%;
- border: 1px solid #dadbde;
+  border: none;
   padding: 15px;
   border-radius: 10px;
   margin: 0 0 2% 0;
-  background-color: #332d2d;
+  background-color: #16222a;
   color: white;
 }
 #input_button{
@@ -455,7 +459,7 @@ a{
   border: none;
   border-radius: 10px;
   text-align: center; 
-  width: 110%;
+  width: 108%;
   margin: 0 auto 0 auto;
 
 }
@@ -480,7 +484,7 @@ a{
    padding: 15px;
    border-radius: 10px;
    margin: 0 0 2% 0;
-   background-color: #332d2d;
+   background-color: #16222a;
    color: white;
 }
 #input_button2{

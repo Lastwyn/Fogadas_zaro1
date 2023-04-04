@@ -40,6 +40,7 @@ if (isset($_POST['jelszovissza'])) {
     <main>
         <div class="login-bodycard">
         <h2 class="kozep">Add meg az email-címedet <br>a jelszó megújításához.</h2>
+        <hr class="hr">
             <form method="POST">
                 <div>
                     <input type="email" name="reset_email" id="login-input" placeholder="Email-cím" required>

@@ -25,12 +25,20 @@ if (isset($_POST['penzki'])) {
     $kartyaszam = $db->security($_POST['kartyaszam']);
     $kartyat = $db->security($_POST['kartyat']);
     $osszeg = $db->security($_POST['osszeg']);
-    if ($osszeg >= 10000 && $osszeg <= 2000000) {
-        $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '-$osszeg','$kartyat');";
-        $result = $db->RunSQL($sql);
-        $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
-        $result = $db->RunSQL($sql3);
-        header('Location:Foldal.php');
+    if ($osszeg <= $result6) {
+        if ($osszeg >= 10000 && $osszeg <= 2000000) {
+
+            $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '-$osszeg','$kartyat');";
+            $result = $db->RunSQL($sql);
+            $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
+            $result = $db->RunSQL($sql3);
+            header('Location:Foldal.php');
+        }
+    } else {
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Nagyobb értékben akart kiutalni pénzt mint amennyivel rendelkezik!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
     }
 }
 
@@ -40,7 +48,7 @@ if (isset($_POST['penzki'])) {
     <div class="grid-container-adat">
         <div class="col1-adat">
             <h2>Felhasználó neve:</h2>
-            <?php if (isset($_SESSION['felhasz_nev'])): ?>
+            <?php if (isset($_SESSION['felhasz_nev'])) : ?>
                 <h3>
                     <?= $_SESSION['felhasz_nev']; ?>
                 </h3>

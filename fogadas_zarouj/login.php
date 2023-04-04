@@ -30,7 +30,9 @@ if (isset($_POST['bejelentkezes'])) {
         <div class="login-bodycard">
             <div>
                 <h1 class="eltolas">Bejelentkezés</h1>
+                
             </div>
+            <hr class="hr">
             <div>
                 <form method="POST">
                     <div class="login-in">
