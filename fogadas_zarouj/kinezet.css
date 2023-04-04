@@ -6,7 +6,9 @@ body {
   line-height: 1.6;
   margin: 0;
 }
-
+.kozep{
+  text-align: center;
+}
 .table {
   border-collapse: collapse;
   margin-bottom: 30px;
@@ -229,7 +231,7 @@ color: white;
   text-decoration: none;
   font-weight: bold;
   padding: 10px;
-color: white;
+  color: white;
   background-color: #24c6dc;
   border-radius: 5px;
 }
@@ -289,9 +291,6 @@ header .login button {
   margin: 2% 2% 3% 2%;
   width: 95vw;
   min-height: 80vh;
-
-  /*overflow: hidden;*/
-  /* overflow: scroll;*/
 }
 
 .meccsek {
@@ -463,7 +462,7 @@ a{
 .login-bodycard{
   display: flex;
   justify-content: space-around;
-  height: 80vh;
+  height: 79.5vh;
   align-items: center;
   width: 50%;
   margin: 0 auto 15px auto;

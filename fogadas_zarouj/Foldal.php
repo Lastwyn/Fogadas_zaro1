@@ -20,13 +20,22 @@ if (isset($_POST['kuld'])) {
         $result3 = $db->RunSQL($sql3);
         header('Location: fogadasok.php');
       } else {
-        echo 'Nincs elegendő pénze megrakni a fogadást!';
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Nincs elegendő pénze megrakni a fogadást!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';  
       }
     } else {
-      echo 'valami nem jó!';
+      echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+      echo '<p>Már lefutott a meccs!</p>';
+      echo '</div>';
+      echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>'; 
     }
   } else {
-    echo 'Nem vagy bejelentkezve!';
+    echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+    echo '<p>Nem vagy bejelentkezve!</p>';
+    echo '</div>';
+    echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>'; 
   }
 }
 ?>

@@ -18,12 +18,20 @@ if (isset($_POST['jelszovissza'])) {
         http://localhost/fogadas_zarouj/newpassword.php?email=' . $visszaemail . '&hash=' . $felhasznalo['hash'];
         $headers = 'from:admin@localhost.org';
         print_r(mail($to, $subject, $message, $headers));
-        
-        echo '<div class="alert alert-success" role="alert">Az E-mailt elküldtük a megadott e-mail címedre</div>';
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Az E-mailt elküldtük a megadott e-mail címedre</div></p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
+
+    } else {
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Nem talált emailt!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
+      
     }
-} else {
-    echo 'Nem talált emailt!';
 }
+
 
 ?>
 
@@ -31,12 +39,13 @@ if (isset($_POST['jelszovissza'])) {
 <div class="row">
     <main>
         <div class="login-bodycard">
+        <h2 class="kozep">Add meg az email-címedet <br>a jelszó megújításához.</h2>
             <form method="POST">
                 <div>
-                    <input type="email" name="reset_email" id="reset_email" placeholder="Email-cím" required>
+                    <input type="email" name="reset_email" id="login-input" placeholder="Email-cím" required>
                 </div>
                 <div>
-                    <button id="jelszovissza" name="jelszovissza">Elküld</button>
+                    <button id="input_button2" name="jelszovissza">Elküld</button>
                 </div>
             </form>
         </div>

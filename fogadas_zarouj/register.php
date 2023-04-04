@@ -16,14 +16,23 @@ if (isset($_POST['regisztracio'])) {
     $result  = $db->RunSQL($sql);
     $E_ellenorzes = $result->fetch_assoc();
     if ($F_ellenorzes != false) {
-        echo 'Az email-cím megfelelő, de a felhasználónév már foglalt!';
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Az email-cím megfelelő, de a felhasználónév már foglalt!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';       
     }elseif ($E_ellenorzes != false) {
-        echo 'Az email-cím már foglalt!';
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Az email-cím már foglalt!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>'; 
     }else {
         $hash = $db->Hash($felhasznalo_nev);
         $sql = "INSERT INTO felhasznaloi_adatok VALUES ('null', '$felhasznalo_nev', '$email', '$password','$hash', '". date("Y-m-d H:i:s") . "','$okmany', '$neme', '$orszag');";
         $result = $db->RunSQL($sql);
-        echo 'Sikeres regisztráció!';
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>Sikeres regisztráció!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
     }
     $sql2 = "SELECT felhasz_id FROM felhasznaloi_adatok ORDER BY felhasz_id DESC LIMIT 1";
     $result2 = $db->RunSQL($sql2);
