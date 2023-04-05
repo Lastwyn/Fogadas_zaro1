@@ -28,6 +28,7 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -66,4 +67,3 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
       </header>
     </div>
   </div>
-    

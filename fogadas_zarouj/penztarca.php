@@ -10,8 +10,10 @@ if (isset($_POST['penzbe'])) {
     $kartyaszam = $db->security($_POST['kartyaszam']);
     $kartyat = $db->security($_POST['kartyat']);
     $osszeg = $db->security($_POST['osszeg']);
+    $valid = $db->security($_POST['valid-thru-text']);
+    $cvv = $db->security($_POST['cvv-text']);
     if ($osszeg >= 1500 && $osszeg <= 2000000) {
-        $sql1 = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '+$osszeg','$kartyat');";
+        $sql1 = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam','$valid','$cvv', '+$osszeg','$kartyat');";
         $result = $db->RunSQL($sql1);
         $sql = "UPDATE penztarca SET egyenleg = egyenleg + $osszeg WHERE penztarca_id = '$fid'";
         $result = $db->RunSQL($sql);
@@ -25,10 +27,12 @@ if (isset($_POST['penzki'])) {
     $kartyaszam = $db->security($_POST['kartyaszam']);
     $kartyat = $db->security($_POST['kartyat']);
     $osszeg = $db->security($_POST['osszeg']);
+    $valid = $db->security($_POST['valid-thru-text']);
+    $cvv = $db->security($_POST['cvv-text']);
     if ($osszeg <= $result6) {
         if ($osszeg >= 10000 && $osszeg <= 2000000) {
 
-            $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam', '-$osszeg','$kartyat');";
+            $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam','$valid','$cvv', '-$osszeg','$kartyat');";
             $result = $db->RunSQL($sql);
             $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
             $result = $db->RunSQL($sql3);
@@ -45,50 +49,68 @@ if (isset($_POST['penzki'])) {
 ?>
 
 <main>
-    <div class="grid-container-adat">
-        <div class="col1-adat">
-            <h2>Felhasználó neve:</h2>
-            <?php if (isset($_SESSION['felhasz_nev'])) : ?>
-                <h3>
-                    <?= $_SESSION['felhasz_nev']; ?>
-                </h3>
-            <?php endif; ?>
+    <section class="ui">
+        <div class="container-left">
+            <form id="credit-card" method="POST">
+                <div class="number-container">
+                    <label>Kártya Szám</label>
+                    <input type="text" name="kartyaszam" id="card-number" maxlength="19"
+                        placeholder="1234 5678 9101 1121" required
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
+                <div class="name-container">
+                    <label>Kártya Tulajdonos</label>
+                    <input type="text" name="kartyat" id="name-text" maxlength="30" placeholder="Nagy János" required
+                        onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.key == ' '">
+                </div>
+                <div class="name-container">
+                        <label>Összeg</label>
+                        <input type="text" name="osszeg" id="name-text" min="50" max="2000000" required
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    </div>
+                <div class="infos-container">
+                    <div class="expiration-container">
+                        <label>Lejárati Dátum</label>
+                        <input type="text" name="valid-thru-text" id="valid-thru-text" maxlength="5" placeholder="02/40"
+                            required onkeypress="return event.charCode >=48 && event.charCode <= 57">
+                    </div>
+                    <div class="cvv-container">
+                        <label>CVV</label>
+                        <input type="text" name="cvv-text" id="cvv-text" maxlength="3" placeholder="123" required
+                            onkeypress="return event.charCode >=48 && event.charCode <= 57">
+                    </div>
+                </div>
+                <input type="submit" value="Pénz befizetés" id="add" name="penzbe">
+                <input type="submit" value="Pénz kifizetés" id="add" name="penzki">
+            </form>
         </div>
-        <div class="col2-adat">
-            <h2>Egyenlege:</h2>
-            <h3>
-                <?= $result6; ?> Ft
-            </h3>
+        <div class="container-right">
+            <div class="card">
+                <div class="intern">
+                    <img class="approximation" src="img/aprox.png" alt="aproximation">
+                    <div class="card-number">
+                        <div class="number-vl">1234 5678 9101 1121</div>
+                    </div>
+                    <div class="card-holder">
+                        <label>Holder</label>
+                        <div class="name-vl">NOAH JACOB</div>
+                    </div>
+                    <div class="card-infos">
+                        <div class="exp">
+                            <label>valid-thru</label>
+                            <div class="expiration-vl">02/40</div>
+                        </div>
+                        <div class="cvv">
+                            <label>CVV</label>
+                            <div class="cvv-vl">123</div>
+                        </div>
+                    </div>
+                    <img class="chip" src="img/chip.png" alt="chip">
+                </div>
+            </div>
         </div>
-    </div>
-    <form method="POST">
-        <div class="kozos1">
-            <div class="penzfeltoltes">
-                <h1>Pénzfeltöltés / Pénzkifizetés:</h1>
-                <div class="grid-container-penzfeltoltes">
 
-                    <div class="col1-penzfeltoltes">
-                        <label for="kartyaszam">Adja meg a kártyaszámot:</label>
-                        <input type="text" name="kartyaszam" id="inputppenz" required>
-                    </div>
-                    <div class="col2-penzfeltoltes">
-                        <label for="kartyat">Adja meg a kártyatulajdonos nevét:</label>
-                        <input type="text" name="kartyat" id="inputppenz" required>
-                        <br>
-                        <button class="button" id="inputppenzbutton" name="penzbe">Pénzfeltöltés</button>
-                        <button class="button" id="inputppenzbutton" name="penzki">Pénzkifizetés</button>
-                    </div>
-                    <div class="col3-penzfeltoltes">
-                        <label for="osszeg">Adja meg a kívánt összeget:(Ft)</label>
-                        <input type="text" name="osszeg" id="inputppenz" required>
-                    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-
-
-
+    </section>
 </main>
-
+<script src="js.js"></script>
 <?php include('footer.php'); ?>

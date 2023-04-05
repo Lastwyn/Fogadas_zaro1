@@ -17,7 +17,7 @@ if (isset($_POST['jelszovissza'])) {
         Kérjük, kattintson erre a linkre új jelszó beállításához:
         http://localhost/fogadas_zarouj/newpassword.php?email=' . $visszaemail . '&hash=' . $felhasznalo['hash'];
         $headers = 'from:admin@localhost.org';
-        print_r(mail($to, $subject, $message, $headers));
+        mail($to, $subject, $message, $headers);
         echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
         echo '<p>Az E-mailt elküldtük a megadott e-mail címedre</div></p>';
         echo '</div>';
