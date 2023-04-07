@@ -1,21 +1,20 @@
 <?php include('header.php');
 ?>
 
-
 <main id="refresh">
   <h1 class="kozep">Fogadásaid</h1>
   <div class="container2">
     <h2 class="cim2">Futó fogadásaid</h2>
-    <h2 class="cim2">Futó fogadásaid</h2>
+    <h2 class="cim2">Lefutott fogadásaid</h2>
   </div>
   <div class="table-container">
     <table class="table">
       <thead>
         <th>Csapatok</th>
         <th>Tét</th>
-        <th>profit/buko</th>
+        <th>Profit/Buko</th>
         <th>Szorzó</th>
-        <th>eredmeny</th>
+        <th>Fogadás neve</th>
       </thead>
 
 
@@ -42,8 +41,9 @@
             <?= $value['odds']; ?>
           </td>
           <td>
-            <?= $value['eredmeny']; ?>
+            <?= $value['fogadas_neve']; ?>
           </td>
+
       </tr>
     <?php }
     ?>
@@ -56,7 +56,8 @@
         <th>Tét</th>
         <th>profit/buko</th>
         <th>Szorzó</th>
-        <th>eredmeny</th>
+        <th>Fogadás neve</th>
+        <th>Eredmény</th>
       </thead>
 
       <tr>
@@ -81,6 +82,9 @@
           </td>
           <td>
             <?= $value['odds']; ?>
+          <td>
+            <?= $value['fogadas_neve']; ?>
+          </td>
           </td>
           <td>
             <?= $value['eredmeny']; ?>
@@ -92,10 +96,10 @@
   </div>
 </main>
 <div class="row">
-                <footer class="lent">
-                <p>&copy; 2023 Sőregi Dávid fogadó oldala.</p>
-                </footer>
-            </div>
+  <footer class="lent">
+    <p>&copy; 2023 Sőregi Dávid fogadó oldala.</p>
+  </footer>
+</div>
 </div>
 
 

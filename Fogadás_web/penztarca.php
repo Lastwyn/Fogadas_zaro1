@@ -29,11 +29,12 @@ if (isset($_POST['penzbe'])) {
             echo '</div>';
             echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
         }
+    } else {
+        echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+        echo '<p>A kártyája nem érvényes vagy lejárt!</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
     }
-    echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
-    echo '<p>A kártyája nem érvényes vagy lejárt!</p>';
-    echo '</div>';
-    echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
 }
 
 if (isset($_POST['penzki'])) {
@@ -45,27 +46,39 @@ if (isset($_POST['penzki'])) {
     $osszeg = $db->security($_POST['osszeg']);
     $valid = $db->security($_POST['valid-thru-text']);
     $cvv = $db->security($_POST['cvv-text']);
-    if ($osszeg <= $result6) {
-        if ($osszeg >= 10000 && $osszeg <= 2000000) {
+    $szetvalid = explode('/', $valid);
+    $expires = \DateTime::createFromFormat('my', $szetvalid[0] . $szetvalid[1]);
+    $now     = new \DateTime();
 
-            $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam','$valid','$cvv', '-$osszeg','$kartyat');";
-            $result = $db->RunSQL($sql);
-            $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
-            $result = $db->RunSQL($sql3);
-            header('Location:Foldal.php');
+    if ($expires > $now) {
+        if ($osszeg <= $result6) {
+            if ($osszeg >= 10000 && $osszeg <= 2000000) {
+
+                $sql = "INSERT INTO be_ki_fizetes VALUES (NULL,'$fid','" . date("Y-m-d H:i:s") . "','$kartyaszam','$valid','$cvv', '-$osszeg','$kartyat');";
+                $result = $db->RunSQL($sql);
+                $sql3 = "UPDATE penztarca SET egyenleg = egyenleg - $osszeg WHERE penztarca_id = '$fid'";
+                $result = $db->RunSQL($sql3);
+                header('Location:Foldal.php');
+            } else {
+                echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
+                echo '<p>Nem megfelelő összeget adott meg!</p><p>A minimum kifizetési összeg 10.000Ft, a maximum kifizetési érték 2.000.000Ft!</p>';
+                echo '</div>';
+                echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
+            }
         } else {
             echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
-            echo '<p>Nem megfelelő összeget adott meg!</p><p>A minimum kifizetési összeg 10.000Ft, a maximum kifizetési érték 2.000.000Ft!</p>';
+            echo '<p>Nagyobb értékben akart kiutalni pénzt mint amennyivel rendelkezik!</p>';
             echo '</div>';
             echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
         }
     } else {
         echo '<div id="modal" style="position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 5px; text-align: center;  font-size: 16px; color: #333;">';
-        echo '<p>Nagyobb értékben akart kiutalni pénzt mint amennyivel rendelkezik!</p>';
+        echo '<p>A kártyája nem érvényes vagy lejárt!</p>';
         echo '</div>';
         echo '<script>setTimeout(function(){document.getElementById(\'modal\').style.display = \'none\';}, 4000);</script>';
     }
 }
+
 
 ?>
 
@@ -131,5 +144,5 @@ if (isset($_POST['penzki'])) {
         </div>
     </main>
 </body>
-<script src="penztarca.js"></script>
+<script src="js/penztarca.js"></script>
 <?php include('footer.php'); ?>

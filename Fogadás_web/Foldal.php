@@ -93,7 +93,7 @@ if (isset($_POST['kuld'])) {
       </div>
     </div>
   </div>
-  <script src="proba.js"></script>
+  <script src="js/fogadasok.js"></script>
 </main>
 
 <?php include('footer.php'); ?>

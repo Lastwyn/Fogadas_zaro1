@@ -9,7 +9,7 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
   $sql1 = "SELECT DISTINCT `fogadasi_osszeg`,`profit_buko`, fogadas.meccs_id , fogadas.fogadasi_szam,fogadas.eredmeny, fogadas_neve, odds, hazai_id, vendeg_id FROM fogadas INNER JOIN fogadasi_lehetoseg ON fogadasi_lehetoseg.fogadasi_szam = fogadas.fogadasi_szam INNER JOIN meccs_eredmeny ON meccs_eredmeny.meccs_id = fogadas.meccs_id INNER JOIN nemzetek ON nemzetek.nemzet_id = meccs_eredmeny.hazai_id OR nemzetek.nemzet_id = meccs_eredmeny.vendeg_id WHERE felhasz_id = '" . $_SESSION['felhasz_id'] . "' AND lefutott_e = 0 ORDER BY fog_id DESC;";
   $result1 = $db->RunSQL($sql1);
 
-  $sql = "SELECT DISTINCT `fogadasi_osszeg`,`profit_buko`, fogadas.meccs_id , fogadas.fogadasi_szam,fogadas.eredmeny, fogadas_neve, odds, hazai_id, vendeg_id FROM fogadas INNER JOIN fogadasi_lehetoseg ON fogadasi_lehetoseg.fogadasi_szam = fogadas.fogadasi_szam INNER JOIN meccs_eredmeny ON meccs_eredmeny.meccs_id = fogadas.meccs_id INNER JOIN nemzetek ON nemzetek.nemzet_id = meccs_eredmeny.hazai_id OR nemzetek.nemzet_id = meccs_eredmeny.vendeg_id WHERE felhasz_id = '" . $_SESSION['felhasz_id'] . "' AND lefutott_e = 1 ORDER BY fog_id DESC LIMIT 5;";
+  $sql = "SELECT DISTINCT `fogadasi_osszeg`,`profit_buko`, fogadas.meccs_id , fogadas.fogadasi_szam,fogadas.eredmeny, fogadas_neve, odds, hazai_id, vendeg_id FROM fogadas INNER JOIN fogadasi_lehetoseg ON fogadasi_lehetoseg.fogadasi_szam = fogadas.fogadasi_szam INNER JOIN meccs_eredmeny ON meccs_eredmeny.meccs_id = fogadas.meccs_id INNER JOIN nemzetek ON nemzetek.nemzet_id = meccs_eredmeny.hazai_id OR nemzetek.nemzet_id = meccs_eredmeny.vendeg_id WHERE felhasz_id = '" . $_SESSION['felhasz_id'] . "' AND lefutott_e = 1 ORDER BY fog_id DESC LIMIT 10;";
   $result = $db->RunSQL($sql);
 
 }
@@ -20,7 +20,7 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
 
 <head>
   <title>Tutifix</title>
-  <link rel = "icon" href = "betting.ico"  type = "image/x-icon">
+  <link rel = "icon" href = "img/betting.ico"  type = "image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="kinezet.css?<?php echo time(); ?>" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -39,7 +39,7 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
         <h1>Tutifix fogadó oldal</h1>
         <nav>
           <ul>
-            <li><a href="Foldal.php" class="navbutton">Home</a></li>
+            <li><a href="Foldal.php" class="navbutton">Fő oldal</a></li>
             <?php
             if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_SESSION['felhasz_id']) : $_SESSION['felhasz_id'] = "") { ?>
 
@@ -56,6 +56,9 @@ if (isset($_SESSION['felhasz_id']) ? $_SESSION['felhasz_id'] = $db->security($_S
               <?php endwhile; ?>
               <li>
                 <?= $_SESSION['felhasz_nev']; ?>
+              </li>
+              <li>
+              <a href="profil.php" class="navbutton">Profil</a>
               </li>
             <?php else: ?>
               <li><a href="register.php" class="navbutton">Regisztráció</a></li>
