@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Ápr 05. 11:56
--- Kiszolgáló verziója: 10.4.22-MariaDB
--- PHP verzió: 8.1.2
+-- Létrehozás ideje: 2023. Ápr 26. 16:12
+-- Kiszolgáló verziója: 10.4.21-MariaDB
+-- PHP verzió: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,7 +76,22 @@ INSERT INTO `be_ki_fizetes` (`id`, `penztarca_id`, `datum`, `kartyaszam`, `lejar
 (29, 6, '2023-04-05', '13123123', '', '0', 100000, 'az'),
 (30, 6, '2023-03-28', '1234123412341234', '03/23', '3', 10000, 'az'),
 (31, 6, '2023-04-05', '1231', '13/13', '133', 16000, 'az'),
-(32, 6, '2023-04-05', '1231 2312 3213 2112', '04/17', '123', 1600, 'az');
+(32, 6, '2023-04-05', '1231 2312 3213 2112', '04/17', '123', 1600, 'az'),
+(33, 6, '2023-04-05', '1111 1212 2222 2222', '10/10', '123', 30000, 'az'),
+(34, 6, '2023-04-05', '1234 5678 9222', '11/11', '123', 3000, 'az'),
+(35, 6, '2023-04-05', '1111 1212 2222 2222', '05/24', '123', 3000, 'teszt'),
+(36, 6, '2023-04-05', '1111 1212 2222 2222', '05/24', '232', 3000, 'az'),
+(37, 6, '2023-04-05', '1232 1312 3213 2132', '05/24', '333', 3000, 'az'),
+(38, 6, '2023-04-06', '1111 1212 2222 2222', '05/24', '333', -159600, 'az'),
+(39, 6, '2023-04-06', '2132 1321 3213 2132', '05/24', '333', 10000, 'az'),
+(40, 6, '2023-04-07', '1111 1212 2222 2222', '06/24', '333', 2000, 'az'),
+(41, 6, '2023-04-07', '1111 1212 2222 2222', '05/24', '333', 2000, 'az'),
+(42, 6, '2023-04-07', '1111 1212 2222 2222', '03/24', '222', 3000, 'az'),
+(43, 6, '2023-04-07', '1111 1212 2222 2222', '06/24', '333', 2000, 'az'),
+(44, 6, '2023-04-07', '1111 1212 2222 2222', '06/24', '333', -10000, 'az'),
+(45, 6, '2023-04-10', '3213 2321 3123 1231', '06/24', '444', 10000, 'az'),
+(46, 6, '2023-04-10', '1111 1212 2222 2222', '06/24', '333', 12000, 'az'),
+(47, 14, '2023-04-26', '1111 1212 2222 2222', '06/24', '123', 10000, 'kisjeno');
 
 -- --------------------------------------------------------
 
@@ -101,9 +116,12 @@ CREATE TABLE `felhasznaloi_adatok` (
 --
 
 INSERT INTO `felhasznaloi_adatok` (`felhasz_id`, `felhasz_nev`, `email`, `jelszo`, `hash`, `reg_datum`, `okmany`, `neme`, `orszag`) VALUES
-(3, 'Teszt Elek', 'tesztelek@localhost.org', '$2y$10$5w3G8QT3uAF5I6ZFAIYxLeaibWSouAcv0AMj09xrwvknnF7w0Dogi', '3545578dd1b80e7bbb1e36eb6ae0cc22596f825c9d488c0d0e20702636537465684c8cb6eca180667d50fb1a0983a363231bc7e8c006dccde000b7b64dbfe0b9', '2023-03-13', '123456', 'Férfi', 'cigany'),
+(3, 'Teszt Elek', 'tesztelek@localhost.org', '$2y$10$5w3G8QT3uAF5I6ZFAIYxLeaibWSouAcv0AMj09xrwvknnF7w0Dogi', '3545578dd1b80e7bbb1e36eb6ae0cc22596f825c9d488c0d0e20702636537465684c8cb6eca180667d50fb1a0983a363231bc7e8c006dccde000b7b64dbfe0b9', '2023-03-13', '123456', 'Férfi', 'Magyarország'),
 (4, 'teszt', 'teszt@localhost.org', '$2y$10$i05XnrwkxrNQ43TZHBnID.IBvfOeH4Mn8pE4jXfcY/2B6DRHCbj5C', '1f2fdc211715d8749a3deb711fd77649a799bb129f1c9ee6b3ea765bf5f63bf6ff8d4304ff5293dd70834f284d2214e983f432f01b9c5e0acaac5fb5ceae7a30', '2023-03-20', '123456', 'Férfi', 'Magyarország'),
-(5, 'az', 'az@localhost.org', '$2y$10$LV8DK.yqRVrqQjZ6lsoyuug/BJOuM8svsc2/BNuG1oqCbkWBBeZYm', 'f7a3e3b8e10e0dba21dd7d18fcf8088d1802a91d8938714a2e7367dfd871ba1c4de481b0c000440ee09c77d79cdfa73f858fa4f2fa684afd6d7c2df8200ca2b7', '2023-03-23', '123456', 'Nő', 'magyar');
+(5, 'az', 'az@localhost.org', '$2y$10$LV8DK.yqRVrqQjZ6lsoyuug/BJOuM8svsc2/BNuG1oqCbkWBBeZYm', 'f7a3e3b8e10e0dba21dd7d18fcf8088d1802a91d8938714a2e7367dfd871ba1c4de481b0c000440ee09c77d79cdfa73f858fa4f2fa684afd6d7c2df8200ca2b7', '2023-03-23', '123456', 'Nő', 'Magyarország'),
+(9, 'Lastwyn', 'davesoregi@gmail.com', '$2y$10$NrakDjc4jRdnjPh1oKV4Q.t8mlCE9fVHOPCzQtOgqhvBEqrLsHJZG', '6dbacf17723179fc262a274fe6afe960667c0b1a31f36e6b54496e0305c69d69f0d3198fdebe50fb2505adebfe5537e0b66cf150e47ef50ec1bfd3ddc3380c24', '2023-04-06', '213456SS', 'Férfi', 'Magyarország'),
+(12, 'az3', 'az3@localhost.org', '$2y$10$2.aRb4B83ox8YQuogGGkGuGK.HEqSe3k/pAgzhRBSP1SjibvzO6EO', 'c9dea2d6cd592f84430419028c5aadbdf92001ca4216c8dbd9e02a0a84689ea11b0a8266ea8d40b0e05e22e1c95c961c887b51037c2be397574d29b4e7e6f7f9', '2023-04-10', '12345622', 'Férfi', 'Magyarország'),
+(13, 'Kis Jenő', 'kisjeno@localhost.org', '$2y$10$IYD8nRQM45G29rfVh5CyjunFjYmfddo9r9O7yIXVnJB01dSAVlXWe', '2471372ecdd1d06afc0d971b8d89c589d15852d8f51af10e3707f0332da8c63ece1b96f73bd3d392f9b1ce562febce0da7b24cacead4a5dac87466a1b17edb9d', '2023-04-26', '123456SS', 'Férfi', 'Magyarország');
 
 -- --------------------------------------------------------
 
@@ -178,7 +196,43 @@ INSERT INTO `fogadas` (`felhasz_id`, `fog_id`, `fogadasi_osszeg`, `profit_buko`,
 (5, 58, 2000, 4000, 169, 1, 'Nyertes', 2),
 (5, 59, 2000, -2000, 176, 1, 'Vesztes', 1.8),
 (5, 60, 2000, -2000, 177, 2, 'Vesztes', 2),
-(5, 61, 2000, -2000, 178, 2, 'Vesztes', 1.44);
+(5, 61, 2000, -2000, 178, 2, 'Vesztes', 1.44),
+(5, 62, 1000, 2000, 1052, 2, 'Nyertes', 2.5),
+(5, 63, 1000, -1000, 1060, 2, 'Vesztes', 4),
+(5, 64, 1000, 1600, 1060, 1, 'Nyertes', 1.6),
+(5, 65, 1000, 2000, 1061, 1, 'Nyertes', 2),
+(5, 66, 1000, -1000, 1061, 3, 'Vesztes', 3),
+(5, 67, 1000, -1000, 1061, 2, 'Vesztes', 2.5),
+(5, 68, 1000, 2000, 1062, 1, 'Nyertes', 1.6),
+(5, 69, 1000, -1000, 1062, 3, 'Vesztes', 3.73),
+(5, 70, 1000, -1000, 1062, 2, 'Vesztes', 4),
+(5, 71, 1000, -1000, 1063, 1, 'Vesztes', 2),
+(5, 72, 1000, 3000, 1063, 3, 'Nyertes', 2.67),
+(5, 73, 1000, -1000, 1063, 2, 'Vesztes', 2),
+(5, 74, 1000, -1000, 1067, 1, 'Vesztes', 1.8),
+(5, 75, 1000, -1000, 1067, 3, 'Vesztes', 3.2),
+(5, 76, 1000, 3000, 1067, 2, 'Nyertes', 3),
+(5, 77, 1000, 4000, 1068, 1, 'Nyertes', 4),
+(5, 78, 1000, -1000, 1068, 3, 'Vesztes', 3.73),
+(5, 79, 1000, -1000, 1068, 2, 'Vesztes', 1.6),
+(5, 80, 1000, 2000, 1069, 1, 'Nyertes', 2.1),
+(5, 81, 1000, -1000, 1069, 3, 'Vesztes', 2.95),
+(5, 82, 1000, -1000, 1069, 2, 'Vesztes', 2.33),
+(5, 83, 1000, -1000, 1071, 1, 'Vesztes', 2.16),
+(5, 84, 1000, 2940, 1071, 3, 'Nyertes', 2.94),
+(5, 85, 1000, -1000, 1071, 2, 'Vesztes', 2.25),
+(5, 86, 1000, -1000, 1072, 1, 'Vesztes', 2.5),
+(5, 87, 1000, 3000, 1072, 3, 'Nyertes', 3),
+(5, 88, 1000, -1000, 1072, 2, 'Vesztes', 2),
+(5, 89, 1000, 2500, 1073, 1, 'Nyertes', 2.5),
+(5, 90, 940, -940, 1073, 3, 'Vesztes', 3),
+(5, 91, 1000, -1000, 1087, 1, 'Vesztes', 4),
+(5, 92, 1000, 3000, 1090, 11, 'Nyertes', 3),
+(13, 93, 1000, 1920, 1119, 2, 'Nyertes', 1.92),
+(13, 94, 1000, -1000, 1119, 3, 'Vesztes', 3.06),
+(13, 95, 1000, -1000, 1120, 1, 'Vesztes', 3),
+(13, 96, 1000, -1000, 1120, 3, 'Vesztes', 3.2),
+(13, 97, 1000, 1800, 1124, 1, 'Nyertes', 1.8);
 
 -- --------------------------------------------------------
 
@@ -200,25 +254,25 @@ INSERT INTO `fogadasi_lehetoseg` (`fogadasi_szam`, `fogadas_neve`, `szorzo`) VAL
 (1, 'Hazai', 2),
 (2, 'Vendég', 2),
 (3, 'Döntetlen', 2.67),
-(4, '+1.5 Gól', 2.13),
-(5, '+2.5 Gól', 2.95),
-(6, '+3.5 Gól', 3.77),
-(7, '+5 Gól', 10.64),
-(8, '-3.5 Gól', 1.91),
-(9, '-2.5 Gól', 2.45),
-(10, '-1.5 Gól', 3),
-(11, 'Hazai +1.5 Gól', 2.8),
-(12, 'Hazai +2.5 Gól', 3.6),
-(13, 'Hazai +3.5 Gól', 5),
-(14, 'Hazai -3.5 Gól', 3),
-(15, 'Hazai -2.5 Gól', 4),
-(16, 'Hazai -1.5 Gól', 6),
-(17, 'Vendég +1.5 Gól', 2.8),
-(18, 'Vendég +2.5 Gól', 3.6),
-(19, 'Vendég +3.5 Gól', 5),
-(20, 'Vendég -3.5 Gól', 3),
-(21, 'Vendég -2.5 Gól', 4),
-(22, 'Vendég -1.5 Gól', 6);
+(4, '+1.5 Gól', 1.38),
+(5, '+2.5 Gól', 2.18),
+(6, '+3.5 Gól', 3.52),
+(7, '+5 Gól', 10.72),
+(8, '-3.5 Gól', 1.46),
+(9, '-2.5 Gól', 2.12),
+(10, '-1.5 Gól', 2.78),
+(11, 'Hazai +1.5 Gól', 2.4),
+(12, 'Hazai +2.5 Gól', 2.8),
+(13, 'Hazai +3.5 Gól', 4),
+(14, 'Hazai -3.5 Gól', 2.6),
+(15, 'Hazai -2.5 Gól', 3.4),
+(16, 'Hazai -1.5 Gól', 4.6),
+(17, 'Vendég +1.5 Gól', 2.4),
+(18, 'Vendég +2.5 Gól', 2.8),
+(19, 'Vendég +3.5 Gól', 4),
+(20, 'Vendég -3.5 Gól', 2.6),
+(21, 'Vendég -2.5 Gól', 3.4),
+(22, 'Vendég -1.5 Gól', 4.6);
 
 -- --------------------------------------------------------
 
@@ -1521,7 +1575,102 @@ INSERT INTO `meccs_eredmeny` (`meccs_id`, `eredmeny`, `gol_szerzo`, `golszam`, `
 (1048, '2-1', 'Aleksandar Mitrović,Aleksandar Mitrović,Jonas Wind,', 3, 13, 10, 1),
 (1049, '1-2', 'Harry Kane,Gonçalo Inácio,Cristiano Ronaldo,', 3, 6, 9, 1),
 (1050, '1-1', 'Álvaro Morata,Michael Gregoritsch,', 2, 7, 19, 1),
-(1051, '0-0', '', 0, 5, 14, 0);
+(1051, '0-0', '', 0, 5, 14, 0),
+(1052, '0-1', 'Ilkay Gundogan,', 1, 18, 1, 1),
+(1053, '1-3', 'Andrej Kramarić,Ilkay Gundogan,Matthias Ginter,Antonio Rudiger,', 4, 11, 1, 1),
+(1054, '4-0', 'Granit Xhaka,Zeki Amdouni,Zeki Amdouni,Ruben Vargas,', 4, 12, 3, 1),
+(1055, '2-0', 'Ludwig Augustinsson,Samuel Gustafson,', 2, 14, 12, 1),
+(1056, '2-2', 'Adrien Rabiot,Adrien Rabiot,Toni Kroos,Toni Kroos,', 4, 2, 1, 1),
+(1057, '2-0', 'Bukayo Saka,Harry Kane,', 2, 6, 5, 1),
+(1058, '3-2', 'Jakub Kiwior,Krystian Bielik,Jakub Kiwior,Jan Kuchta,Jan Kuchta,', 5, 15, 16, 1),
+(1059, '0-0', '', 0, 10, 7, 1),
+(1060, '4-0', 'Mattias Svanberg,Samuel Gustafson,Samuel Gustafson,Samuel Gustafson,', 4, 14, 8, 1),
+(1061, '1-0', 'Jan Kuchta,', 1, 16, 11, 1),
+(1062, '3-0', 'Taras Stepanenko,Mykhaylo Mudryk,Roman Yaremchuk,', 3, 20, 4, 1),
+(1063, '0-0', '', 0, 18, 10, 1),
+(1064, '2-3', 'Virgil van Dijk,Georginio Wijnaldum,Raphael Varane,Benjamin Pavard,Paul Pogba,', 5, 8, 2, 1),
+(1065, '0-0', '', 0, 4, 19, 0),
+(1066, '0-0', '', 0, 5, 9, 0),
+(1067, '0-1', 'Mikkel Damsgaard,', 1, 9, 10, 1),
+(1068, '4-2', 'Ivan Perišić,Mario Pašalić,Mario Pašalić,Mario Pašalić,Pierre-Emile Højbjerg,Mikkel Damsgaard,', 6, 11, 10, 1),
+(1069, '2-0', 'Oleksandr Zinchenko,Oleksandr Zinchenko,', 2, 20, 13, 1),
+(1070, '0-0', '', 0, 15, 2, 0),
+(1071, '2-2', 'Ruslan Malinovskyi,Mykhaylo Mudryk,Bernardo Silva,João Félix,', 4, 20, 9, 1),
+(1072, '0-0', '', 0, 10, 16, 1),
+(1073, '4-2', 'Jonas Wind,Joakim Mæhle,Mikkel Damsgaard,Jonas Wind,Kerem Aktürkoğlu,Zeki Çelik,', 6, 10, 18, 1),
+(1074, '2-3', 'Maximilian Wöber,Michael Gregoritsch,Hakan Çalhanoğlu,Hakan Çalhanoğlu,Hakan Çalhanoğlu,', 5, 19, 18, 1),
+(1075, '0-6', 'Jack Grealish,Harry Kane,Jude Bellingham,Harry Kane,Bukayo Saka,Kyle Walker,', 6, 16, 6, 1),
+(1076, '2-2', 'Lucas Hernandez,Benjamin Pavard,Ádám Szalai,Roland Sallai,', 4, 2, 3, 1),
+(1077, '4-1', 'Rafael Leão,João Félix,Rafael Leão,Cristiano Ronaldo,Marko Grujić,', 5, 9, 13, 1),
+(1078, '1-4', 'Emerson Palmieri,Mattias Svanberg,Emil Forsberg,Samuel Gustafson,Mattias Svanberg,', 5, 4, 14, 1),
+(1079, '0-0', '', 0, 11, 20, 0),
+(1080, '3-3', 'Roland Sallai,Attila Fiola,Ádám Szalai,Marten de Roon,Steven Berghuis,Kenneth Taylor,', 6, 3, 8, 1),
+(1081, '2-1', 'Victor Lindelöf,Samuel Gustafson,Matthias Ginter,', 3, 14, 1, 1),
+(1082, '0-3', 'Luka Modrić,Mario Pašalić,Ivan Perišić,', 3, 3, 11, 1),
+(1083, '0-0', '', 0, 9, 20, 0),
+(1084, '1-5', 'Salih Özcan,Dejan Kulusevski,Samuel Gustafson,Samuel Gustafson,Mattias Svanberg,Emil Forsberg,', 6, 18, 14, 1),
+(1085, '0-1', 'Samuel Gustafson,', 1, 12, 14, 1),
+(1086, '5-0', 'Matty Cash,Michał Karbownik,Krystian Bielik,Jakub Kiwior,Robert Lewandowski,', 5, 15, 7, 1),
+(1087, '2-3', 'Xavi Simons,Memphis Depay,Kai Havertz,Toni Kroos,Matthias Ginter,', 5, 8, 1, 1),
+(1088, '1-5', 'Jorginho,Przemysław Frankowski,Matty Cash,Przemysław Frankowski,Przemysław Frankowski,Sebastian Szymański,', 6, 4, 15, 1),
+(1089, '0-5', 'Oleksandr Zinchenko,Ruslan Malinovskyi,Oleksandr Svatok,Vitaliy Mykolenko,Mykhaylo Mudryk,', 5, 15, 20, 1),
+(1090, '2-3', 'Bukayo Saka,Harry Kane,Mattias Svanberg,Samuel Gustafson,Mattias Svanberg,', 5, 6, 14, 1),
+(1091, '0-4', 'Mohamed Elyounoussi,Sander Berge,Sander Berge,Mohamed Elyounoussi,', 4, 12, 17, 1),
+(1092, '1-0', 'Mohamed Elyounoussi,', 1, 17, 19, 1),
+(1093, '1-4', 'Rasmus Winther Højlund,Dejan Kulusevski,Dejan Kulusevski,Samuel Gustafson,Mattias Svanberg,', 5, 10, 14, 1),
+(1094, '0-2', 'Declan Rice,Bukayo Saka,', 2, 1, 6, 1),
+(1095, '1-1', 'Merih Demiral,Jude Bellingham,', 2, 18, 6, 1),
+(1096, '0-0', '', 0, 4, 5, 1),
+(1097, '4-1', 'Yannick Carrasco,Kevin De Bruyne,Kevin De Bruyne,Orel Mangala,Roland Sallai,', 5, 5, 3, 1),
+(1098, '0-4', 'Patrick Wimmer,Patrick Wimmer,Patrick Wimmer,Michael Gregoritsch,', 4, 1, 19, 1),
+(1099, '3-1', 'Antonio Rudiger,Antonio Rudiger,Antonio Rudiger,Iago Aspas,', 4, 1, 7, 1),
+(1100, '3-3', 'Oleksandr Svatok,Roman Yaremchuk,Oleksandr Svatok,Nicolas Seiwald,Konrad Laimer,Michael Gregoritsch,', 6, 20, 19, 1),
+(1101, '2-0', 'Jonas Wind,Rasmus Winther Højlund,', 2, 10, 4, 1),
+(1102, '1-1', 'Merih Demiral,Dodi Lukebakio,', 2, 18, 5, 1),
+(1103, '0-4', 'Samuel Gustafson,Alexander Isak,Samuel Gustafson,Mattias Svanberg,', 4, 18, 14, 1),
+(1104, '0-4', 'Silvan Widmer,Ruben Vargas,Remo Freuler,Manuel Akanji,', 4, 10, 12, 1),
+(1105, '0-6', 'Mateo Kovačić,Ivan Perišić,Mario Pašalić,Marcelo Brozović,Marcelo Brozović,Mario Pašalić,', 6, 9, 11, 1),
+(1106, '1-3', 'Mykhaylo Mudryk,Tomáš Čvančara,Ladislav Krejčí,Vladimír Coufal,', 4, 20, 16, 1),
+(1107, '2-2', 'Cédric Itten,Remo Freuler,Rasmus Winther Højlund,Rasmus Winther Højlund,', 4, 12, 10, 1),
+(1108, '1-0', 'Harry Maguire,', 1, 6, 14, 1),
+(1109, '3-3', 'Christoph Baumgartner,Michael Gregoritsch,Phillipp Mwene,Toni Kroos,Toni Kroos,Toni Kroos,', 6, 19, 1, 1),
+(1110, '3-3', 'Sergej Milinković-Savić,Aleksandar Mitrović,Ivan Ilić,Mikkel Damsgaard,Simon Kjær,Mikkel Damsgaard,', 6, 13, 10, 1),
+(1111, '5-0', 'Steven Berghuis,Steven Berghuis,Steven Berghuis,Memphis Depay,Georginio Wijnaldum,', 5, 8, 5, 1),
+(1112, '2-4', 'Zeki Amdouni,Cédric Itten,Josip Stanišić,Marcelo Brozović,Marcelo Brozović,Ivan Perišić,', 6, 12, 11, 1),
+(1113, '4-0', 'Aleksandar Mitrović,Dušan Tadić,Aleksandar Mitrović,Aleksandar Mitrović,', 4, 13, 5, 1),
+(1114, '1-0', 'Paul Pogba,', 1, 2, 9, 1),
+(1115, '2-0', 'Ivan Perišić,Ivan Perišić,', 2, 11, 9, 1),
+(1116, '1-0', 'Filip Đuričić,', 1, 13, 14, 1),
+(1117, '2-0', 'Adam Hložek,Vladimír Coufal,', 2, 16, 15, 1),
+(1118, '0-1', 'Josip Šutalo,', 1, 10, 11, 1),
+(1119, '0-2', 'Sander Berge,Alexander Sørloth,', 2, 13, 17, 1),
+(1120, '1-5', 'Emerson Palmieri,Michael Gregoritsch,Nicolas Seiwald,Nicolas Seiwald,Christoph Baumgartner,Michael Gregoritsch,', 6, 4, 19, 1),
+(1121, '1-2', 'Ádám Szalai,Mohamed Elyounoussi,Sander Berge,', 3, 3, 17, 1),
+(1122, '2-3', 'Mario Pašalić,Joško Gvardiol,Kevin Danso,Patrick Wimmer,Christoph Baumgartner,', 5, 11, 19, 1),
+(1123, '1-2', 'Iago Aspas,Bukayo Saka,Kalvin Phillips,', 3, 7, 6, 1),
+(1124, '5-0', 'Kevin De Bruyne,Orel Mangala,Yannick Carrasco,Romelu Lukaku,Orel Mangala,', 5, 5, 7, 1),
+(1125, '0-2', 'Aleksandar Mitrović,Aleksandar Mitrović,', 2, 9, 13, 1),
+(1126, '5-0', 'Ruben Vargas,Granit Xhaka,Silvan Widmer,Zeki Amdouni,Nico Elvedi,', 5, 12, 7, 1),
+(1127, '3-0', 'Mykola Matviyenko,Roman Yaremchuk,Mykola Matviyenko,', 3, 20, 12, 1),
+(1128, '0-0', '', 0, 17, 11, 1),
+(1129, '0-2', 'Jorginho,Emerson Palmieri,', 2, 20, 4, 1),
+(1130, '1-3', 'Roman Yaremchuk,Adam Hložek,Tomáš Čvančara,Jakub Brabec,', 4, 20, 16, 1),
+(1131, '3-2', 'Michael Gregoritsch,Michael Gregoritsch,Nicolas Seiwald,Jonas Wind,Mikkel Damsgaard,', 5, 19, 10, 1),
+(1132, '0-4', 'Kenneth Taylor,Jurriën Timber,Kenneth Taylor,Xavi Simons,', 4, 12, 8, 1),
+(1133, '1-0', 'Ádám Szalai,', 1, 3, 1, 1),
+(1134, '0-1', 'Marco Verratti,', 1, 5, 4, 1),
+(1135, '1-1', 'Josip Stanišić,Matthias Ginter,', 2, 11, 1, 1),
+(1136, '2-0', 'László Kleinheisler,Roland Sallai,', 2, 3, 4, 1),
+(1137, '0-2', 'Roland Sallai,Ádám Szalai,', 2, 18, 3, 1),
+(1138, '0-2', 'Mattias Svanberg,Samuel Gustafson,', 2, 1, 14, 1),
+(1139, '2-0', 'Jorginho,Giovanni Di Lorenzo,', 2, 4, 16, 1),
+(1140, '1-3', 'Przemysław Frankowski,Bukayo Saka,Kyle Walker,Luke Shaw,', 4, 15, 6, 1),
+(1141, '1-1', 'Jorginho,Joško Gvardiol,', 2, 4, 11, 1),
+(1142, '0-3', 'Giovanni Di Lorenzo,Marco Verratti,Jorginho,', 3, 8, 4, 1),
+(1143, '3-2', 'Marcelo Brozović,Joško Gvardiol,Borna Barišić,Paul Pogba,Raphael Varane,', 5, 11, 2, 1),
+(1144, '2-0', 'Cengiz Ünder,Ferdi Kadıoğlu,', 2, 18, 5, 1),
+(1145, '0-1', 'Sergej Milinković-Savić,', 1, 18, 13, 1),
+(1146, '2-2', 'Heorhii Sudakov,Mykhaylo Mudryk,Zeki Amdouni,Cédric Itten,', 4, 20, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -1579,7 +1728,10 @@ CREATE TABLE `penztarca` (
 INSERT INTO `penztarca` (`felhasz_id`, `penztarca_id`, `egyenleg`) VALUES
 (3, 1, 2000),
 (4, 2, 2420),
-(5, 6, 117600);
+(5, 6, 29500),
+(9, 10, 0),
+(12, 13, 0),
+(13, 14, 8720);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -1648,19 +1800,19 @@ ALTER TABLE `penztarca`
 -- AUTO_INCREMENT a táblához `be_ki_fizetes`
 --
 ALTER TABLE `be_ki_fizetes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznaloi_adatok`
 --
 ALTER TABLE `felhasznaloi_adatok`
-  MODIFY `felhasz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `felhasz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT a táblához `fogadas`
 --
 ALTER TABLE `fogadas`
-  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `fog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT a táblához `fogadasi_lehetoseg`
@@ -1672,7 +1824,7 @@ ALTER TABLE `fogadasi_lehetoseg`
 -- AUTO_INCREMENT a táblához `meccs_eredmeny`
 --
 ALTER TABLE `meccs_eredmeny`
-  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1052;
+  MODIFY `meccs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1147;
 
 --
 -- AUTO_INCREMENT a táblához `nemzetek`
@@ -1684,7 +1836,7 @@ ALTER TABLE `nemzetek`
 -- AUTO_INCREMENT a táblához `penztarca`
 --
 ALTER TABLE `penztarca`
-  MODIFY `penztarca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `penztarca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Megkötések a kiírt táblákhoz
